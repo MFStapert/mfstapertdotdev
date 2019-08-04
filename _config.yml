@@ -1,11 +1,12 @@
 title: mfstapert.dev
 permalink: /blog/:title/:year/:month/:day/
 
+baseurl: https://mfstapert.github.io/mfstapertdotdev/
 title: mfstapert.dev
 
 github: https://github.com/MFStapert
 linkedin: https://www.linkedin.com/in/marijn-stapert-05091182/
-twitter: 
+twitter: https://twitter.com/MarijnStapert
 
 sass:
   style: compressed

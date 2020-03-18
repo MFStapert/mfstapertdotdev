@@ -1,0 +1,64 @@
+@import 'variables';
+
+@media only screen and (max-width: 600px) {
+    .resume-personalia {
+        display: inline!important;
+    }
+    img {
+        display: none;
+    }  
+}
+
+.resume {
+    &-section {
+        width: 100%;
+        margin-bottom: $size-medium;
+        h1 {
+            margin-bottom: $size-medium;
+        }
+    }
+
+    &-personalia {
+        display: grid;
+        grid-template-columns: 50%;
+        img {
+            grid-column-start: 1;
+            grid-row-end: span 2;
+            height: 200px;
+            width: 200px;
+            border-radius: 4px;
+        }
+        .personalia {
+            grid-column-start: 2;
+        }
+        .education {
+            grid-column-start: 2;
+        }
+        h3 {
+            margin: $size-small 0;
+        }
+
+    }
+    
+    &-experience {
+        margin-bottom: $size-medium;
+        &-header {            
+            margin-bottom: $size-medium;
+            h3 > em {
+                font-weight: 400;
+            }
+        }
+        article {
+            width: 65%;
+            font-size: 1.6rem;
+            margin-bottom: $size-medium;
+        }
+        ul {
+            font-size: 1.6rem;
+            padding-top: $size-small;
+            padding-bottom: $size-medium;
+        }
+        
+    }
+}
+

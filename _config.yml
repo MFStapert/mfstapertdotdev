@@ -5,6 +5,10 @@ github: https://github.com/MFStapert
 linkedin: https://www.linkedin.com/in/marijn-stapert-05091182/
 twitter: https://twitter.com/MarijnStapert
 
+collections:
+  experiences:
+    output: false
+
 sass:
   style: compressed
   sass_dir: _sass

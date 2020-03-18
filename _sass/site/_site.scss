@@ -1,5 +1,25 @@
 @import 'variables';
 
+ul {
+    list-style-type: disc;
+    list-style-position: inside;
+}
+
+ul.multi-column {
+    -moz-column-count: 3;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 3;
+    -webkit-column-gap: 20px;
+    column-count: 3;
+    column-gap: 20px;
+}
+
+img {
+    border: 1px solid $color-dark-grey;
+    border-radius: 4px;
+}
+  
+
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -8,10 +28,10 @@
     margin: 0 auto;
 }
 
-.hero-title {
+.hero-title {    
     line-height: 6rem;
     max-width: 728px;
-  }
+}
 
 .blog-item {
     width: 100%;

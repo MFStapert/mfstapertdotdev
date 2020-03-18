@@ -39,7 +39,7 @@ layout: default
         <article>{{ experience | remove: '<p>' | remove: '</p>' }}</article>
                 
         {% if experience.activities %}
-        <p class="underline"><strong>Activities include:</strong></p>
+        <p class="underline"><strong>Activities:</strong></p>
         <ul>
         {% for activity in experience.activities %}
             <li>{{activity}}</li>

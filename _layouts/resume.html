@@ -26,12 +26,12 @@ layout: default
     <div class="resume-experience">
 
         <div class="resume-experience-header">
-            <h2>
-                {{ experience.period }}: <span class="color-primary">{{ experience.employer }}</span>
-            </h2>
-            <h3 class="color-primary">
+            <h2 class="color-primary">
                 {{ experience.title }}
-                <em>{% if experience.languages %} ({{experience.languages}}) {% endif %}</em>
+                <em>{% if experience.languages %} ({{experience.languages}}) {% endif %}</em>                
+            </h2>
+            <h3>
+                {{ experience.period }}: <span class="color-primary">{{ experience.employer }}</span>
             </h3>
         </div>
 

@@ -37,14 +37,13 @@
         h3 {
             margin: $size-small 0;
         }
-
     }
     
     &-experience {
         margin-bottom: $size-medium;
         &-header {            
             margin-bottom: $size-medium;
-            h3 > em {
+            h2 > em {
                 font-weight: 400;
             }
         }

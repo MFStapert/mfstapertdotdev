@@ -1,6 +1,6 @@
 ---
 period: Januari 2020 - Present
-employer: Topicus
+employer: Topicus education
 title: Technical lead
 activities:
     - Researching new technology

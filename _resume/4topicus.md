@@ -1,6 +1,6 @@
 ---
 period: August 2017 - August 2018
-employer: Topicus
+employer: Topicus finance
 title: Back-end developer
 languages: Java
 activities:

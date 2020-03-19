@@ -2,7 +2,7 @@
 period: November 2016 – June 2017
 employer: DilemmaManager
 title: Developer
-languages: VB6, C#, Javascript
+languages: VB6, C#
 activities: 
     - Building corporate websites
     - Development and maintenance of legacy system

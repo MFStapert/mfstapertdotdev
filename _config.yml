@@ -6,7 +6,7 @@ linkedin: https://www.linkedin.com/in/marijn-stapert-05091182/
 twitter: https://twitter.com/MarijnStapert
 
 collections:
-  experiences:
+  resume:
     output: false
 
 sass:

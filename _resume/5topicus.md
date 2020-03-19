@@ -1,6 +1,6 @@
 ---
 period: August 2019 - Present
-employer: Topicus
+employer: Topicus education
 title: Full-stack developer
 languages: Typescript
 activities:

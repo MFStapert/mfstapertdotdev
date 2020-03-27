@@ -1,60 +1,60 @@
 ---
 layout: default
 ---
+
 <section class="resume-section resume-personalia">
-    <img src="/assets/imgs/mugshot.jpg">
+	<img src="/assets/imgs/mugshot.jpg" />
 
-    <div class="personalia">
-        <h3 class="underline">Personalia:</h3>
-        <p><strong>Date of birth: <span class="color-primary">18-09-1991</span></strong></p>
-        <p><strong>Residence: <span class="color-primary">Zutphen</span></strong></p>
-        <p><strong>Email: <span class="color-primary">mf.stapert@gmail.com</span></strong></p>
-        <p><strong>Phone: <span class="color-primary">(+316)23994273</span></strong></p>
-    </div>
+	<div class="personalia">
+		<h3 class="underline">Personalia:</h3>
+		<p>Date of birth: <span class="color-primary">18-09-1991</span></p>
+		<p>Residence: <span class="color-primary">Zutphen</span></p>
+		<p>Email: <span class="color-primary">mf.stapert@gmail.com</span></p>
+		<p>Phone: <span class="color-primary">(+316)23994273</span></p>
+	</div>
 
-    <div class="personalia">
-    <h3 class="underline">Education:</h3>
-        <p><strong>2009: <span class="color-primary">HAVO NT</span></strong></p>
-        <p><strong>2016: <span class="color-primary">Bachelor Software engineering</span></strong></p>
-    </div>
+	<div class="personalia">
+		<h3 class="underline">Education:</h3>
+		<p>2009: <span class="color-primary">HAVO NT</span></p>
+		<p>2016: <span class="color-primary">Bachelor Software engineering</span></p>
+	</div>
 </section>
 
 <section class="resume-section">
-    <h1>Work experience:</h1>
+	<h1>Work experience:</h1>
 
-    {% for experience in site.resume reversed %}
-    <div class="resume-experience">
+	{% for experience in site.resume reversed %}
+	<div class="resume-experience">
+		<div class="resume-experience-header">
+			<h2 class="color-primary">
+				{{ experience.title }}
+				<em>{% if experience.languages %} ({{experience.languages}}) {% endif %}</em>
+			</h2>
+			<strong> {{ experience.period }}: <span class="color-primary">{{ experience.employer }}</span> </strong>
+		</div>
 
-        <div class="resume-experience-header">
-            <h2 class="color-primary">
-                {{ experience.title }}
-                <em>{% if experience.languages %} ({{experience.languages}}) {% endif %}</em>                
-            </h2>
-            <h3>
-                {{ experience.period }}: <span class="color-primary">{{ experience.employer }}</span>
-            </h3>
-        </div>
+		<!-- Job description -->
+		<article>
+			{{ experience | remove: '
+			<p>' | remove: '</p>
+			' }}
+		</article>
 
-        <!-- Job description -->
-        <article>{{ experience | remove: '<p>' | remove: '</p>' }}</article>
-                
-        {% if experience.activities %}
-        <p class="underline"><strong>Activities:</strong></p>
-        <ul>
-        {% for activity in experience.activities %}
-            <li>{{activity}}</li>
-        {% endfor %}
-        </ul>
-        {% endif %}
-
-        {% if experience.technology %}
-        <p class="underline"><strong>Technology:</strong></p>
-        <ul class="multi-column">
-        {% for technology in experience.technology %}
-            <li>{{technology}}</li>
-        {% endfor %}
-        </ul>
-        {% endif %}
-    </div>        
-    {% endfor %}
+		{% if experience.activities %}
+		<p class="underline"><strong>Activities:</strong></p>
+		<ul>
+			{% for activity in experience.activities %}
+			<li>{{activity}}</li>
+			{% endfor %}
+		</ul>
+		{% endif %} {% if experience.technology %}
+		<p class="underline"><strong>Technology:</strong></p>
+		<ul class="multi-column">
+			{% for technology in experience.technology %}
+			<li>{{technology}}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+	</div>
+	{% endfor %}
 </section>

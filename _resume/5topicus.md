@@ -25,6 +25,6 @@ technology:
     - Google Cloud Functions 
 ---
 Started development on a new system for teachers in primary education. 
-The system is a piece of productivity software which connects to an existing administration application and a learning platform which also has it's own back-end. 
+The system is a piece of productivity software which connects to an existing administration application and a learning platform, which also has it's own back-end. 
 The system allows teachers to make plans based on test results and or learning goals, insight into test results and maintenance of groups.
 Challenges of the project were coupling with an existing legacy system and transforming very disperate data into useful information.

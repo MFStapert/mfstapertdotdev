@@ -14,4 +14,4 @@ technology:
     - MSSQL
     - JQuery
 ---
-Responsible for development and maintenance of a system that creates personality profiles based on questionnaires. Profiles are used for a wide array of uses, ranging from education, corporate (recruiting, coaching, team efficiency) and goverment.
+Responsible for development and maintenance of a system that creates personality profiles based on questionnaires. Profiles are used for a wide array of uses, ranging from education, corporate (recruiting, coaching, team efficiency) and government.

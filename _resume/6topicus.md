@@ -9,4 +9,4 @@ activities:
   - Transforming technical goals into intermediates and work items
 ---
 
-Responsible for making technical and maintaining a technical roadmap it prioritising with project leads.
+Resonsible for making and maintaining a technical roadmap, prioritising it with project leads.

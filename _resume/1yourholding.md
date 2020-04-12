@@ -7,4 +7,4 @@ technology:
     - Processwire
     - MySQL
 ---
-Continued developement on an component based CMS that allowed designers to easily develop prototypes without prior development experience
+Continued development on a component based CMS that allowed designers to easily develop prototypes without prior development experience.

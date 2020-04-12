@@ -23,5 +23,8 @@ technology:
     - Atlassian suite
 ---
 Worked in a team that maintained and developed a debtor registration system. 
-The system is applicable to multiple markets like mortgages, invoicing and as back-office for one of Netherlands biggest retailers. 
-Because of the diversity of customers it is necessary that the system runs on multiple types of application servers like websphere and wildfly and multiple types of database like Oracle and PostreSQL.
+The system is applicable to multiple markets such as mortgages and
+invoicing. In addition, it’s applicable as back-office for one of the Netherlands’ biggest retailers.
+Because of the diversity of customers, it is necessary that the system runs on multiple types of
+application servers – such as websphere and wildfly – and multiple types of database – like Oracle
+and PostreSQL.

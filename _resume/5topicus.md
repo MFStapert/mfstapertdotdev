@@ -1,5 +1,5 @@
 ---
-period: August 2019 - July 2020
+period: August 2018 - July 2020
 employer: Topicus education
 title: Full-stack developer
 languages: Typescript

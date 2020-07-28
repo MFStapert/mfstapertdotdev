@@ -1,2 +1,1 @@
-Personal site of Marijn Stapert.
-Build using jekyll, hosted via github pages.
+Personal site build using jekyll, hosted via github pages: mfstapert.dev

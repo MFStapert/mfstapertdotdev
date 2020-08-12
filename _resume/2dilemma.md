@@ -1,5 +1,5 @@
 ---
-period: February 2014 - November 2016
+period: February 2016 - November 2016
 employer: DilemmaManager
 title: Intern
 languages: C#

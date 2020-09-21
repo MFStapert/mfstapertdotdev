@@ -41,6 +41,8 @@
     
     &-experience {
         margin-bottom: $size-large;
+        border-left: 1px solid #565554;
+        padding-left: $size-medium;
         &-header {            
             margin-bottom: $size-medium;
             h2 > em {

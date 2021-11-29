@@ -1,68 +1,67 @@
-@import 'variables';
+@import "variables";
 
 @media only screen and (max-width: 600px) {
-    .resume-personalia {
-        display: inline!important;
-    }
-    img {
-        display: none;
-    }  
+  .resume-personalia {
+    display: inline !important;
+  }
+  img {
+    display: none;
+  }
 }
 
 .resume {
-    &-section {
-        width: 100%;
-        margin-bottom: $size-large;
-        h1 {
-            margin-bottom: $size-large;
-        }
+  &-section {
+    width: 100%;
+    margin-bottom: $size-large;
+    h1 {
+      margin-bottom: $size-large;
     }
+  }
 
-    &-personalia {
-        display: grid;
-        grid-template-columns: 50%;
-        row-gap: $size-medium;
-        img {
-            grid-column-start: 1;
-            grid-row-end: span 2;
-            height: 200px;
-            width: 200px;
-            border-radius: 4px;
-        }
-        .personalia {
-            grid-column-start: 2;
-            border-left: 1px solid #565554;
-            padding-left: $size-medium;
-        }
-        h3 {
-            margin: $size-small 0;
-        }
+  &-personalia {
+    display: grid;
+    grid-template-columns: 50%;
+    row-gap: $size-medium;
+    img {
+      align-self: center;
+      grid-column-start: 1;
+      grid-row-end: span 2;
+      height: 200px;
+      width: 200px;
+      border-radius: 4px;
     }
-    
-    &-experience {
-        margin-bottom: $size-large;
-        border-left: 1px solid #565554;
-        padding-left: $size-medium;
-        &-header {            
-            margin-bottom: $size-medium;
-            h2 > em {
-                font-weight: 400;
-            }
-        }
-        article {
-            width: 65%;            
-            margin-bottom: $size-medium;
-            p {
-                font-size: 1.6rem;
-            }
-        }
-        ul {
-            font-size: 1.6rem;
-            line-height: 1.4;
-            padding-top: $size-small;
-            padding-bottom: $size-medium;
-        }
-        
+    .personalia {
+      grid-column-start: 2;
+      border-left: 1px solid #565554;
+      padding-left: $size-medium;
     }
+    h3 {
+      margin: $size-small 0;
+    }
+  }
+
+  &-experience {
+    margin-bottom: $size-large;
+    border-left: 1px solid #565554;
+    padding-left: $size-medium;
+    &-header {
+      margin-bottom: $size-medium;
+      h2 > em {
+        font-weight: 400;
+      }
+    }
+    article {
+      width: 65%;
+      margin-bottom: $size-medium;
+      p {
+        font-size: 1.6rem;
+      }
+    }
+    ul {
+      font-size: 1.6rem;
+      line-height: 1.4;
+      padding-top: $size-small;
+      padding-bottom: $size-medium;
+    }
+  }
 }
-

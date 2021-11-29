@@ -4,21 +4,21 @@ employer: Topicus finance
 title: Back-end developer
 languages: Java
 activities:
-    - Requirement engineering
-    - Test engineering automation
-    - Introduced E2E tests based on selenium
+  - Software development
+  - Introduced E2E tests based on selenium
 technology:
-    - JEE
-    - Hibernate
-    - Liquibase
-    - Oracle / PostgreSQL
-    - Wicket
-    - JBehave 
-    - JUnit
-    - Selenium
-    - Maven
-    - Jenkins
+  - JEE
+  - Hibernate
+  - Liquibase
+  - Oracle / PostgreSQL
+  - Wicket
+  - JBehave
+  - JUnit
+  - Selenium
+  - Maven
+  - Jenkins
 ---
-Worked in a team that maintained and developed on a debtor registration system. 
+
+Worked on a debtor registration system.
 The system is applicable to multiple markets such as mortgages and
-invoicing. 
+invoicing.

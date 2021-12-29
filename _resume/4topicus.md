@@ -13,7 +13,6 @@ technology:
   - Oracle / PostgreSQL
   - Wicket
   - JBehave
-  - JUnit
   - Selenium
   - Maven
   - Jenkins

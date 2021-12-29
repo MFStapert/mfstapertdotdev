@@ -1,0 +1,33 @@
+@import "variables";
+
+article {
+	display: inline-block;
+    h2 {
+        color: $color-primary;
+        margin-top: $size-large;
+        margin-bottom: $size-medium;
+    }
+	h3 {
+		margin-bottom: $size-large;
+	}
+	p {
+        width: 75%;
+		font-size: 2rem;
+        code {
+            padding: $size-micro;
+        }
+	}
+    ul {
+        width: 75%;
+        font-size: 2rem;
+    }
+	a {
+		color: $color-primary;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+    > * {
+        margin-bottom: $size-medium
+    }
+}

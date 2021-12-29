@@ -33,38 +33,18 @@ img {
 }
 
 .blog-item {
+	margin-top: $size-large;
 	width: 100%;
 	a {
 		display: inline-block;
 		padding-left: $size-medium;
-		border-left: 2px solid $color-dark-grey;
-	}
-
-	&:not(:last-of-type) {
-		padding-bottom: $size-large;
-	}
-}
-
-article {
-	display: inline-block;
-	h3 {
-		margin-bottom: $size-medium;
-	}
-	p {
-		font-size: 2rem;
-		code {
-			padding: $size-micro;
-			margin: $size-micro;
-		}
-		&:not(:last-of-type) {
-			margin-bottom: $size-micro;
-		}
-	}
-	a {
-		color: $color-primary;
+		border-left: 1px solid $color-dark-grey;
 		&:hover {
-			text-decoration: underline;
+			color: $color-dark-grey;
 		}
+	}
+	h3 {
+		padding-left: $size-medium;
 	}
 }
 

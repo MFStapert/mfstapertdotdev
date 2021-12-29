@@ -34,11 +34,9 @@ layout: default
           >{% if experience.languages %} ({{experience.languages}}) {% endif
           %}</em
         >
-      </h2>
-      <strong>
+      </h2>      
         {{ experience.period }}:
         <span class="color-primary">{{ experience.employer }}</span>
-      </strong>
     </div>
 
     <!-- Job description -->
@@ -49,14 +47,14 @@ layout: default
     </article>
 
     {% if experience.activities %}
-    <p class="underline"><strong>Key activities:</strong></p>
+    <p class="color-primary">Key activities:</p>
     <ul>
       {% for activity in experience.activities %}
       <li>{{activity}}</li>
       {% endfor %}
     </ul>
     {% endif %} {% if experience.technology %}
-    <p class="underline"><strong>Technology:</strong></p>
+    <p class="color-primary">Technology:</p>
     <ul class="multi-column">
       {% for technology in experience.technology %}
       <li>{{technology}}</li>

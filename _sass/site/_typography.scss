@@ -8,17 +8,20 @@ body {
   font-family: $main-font-family;
   color: $color-dark-grey;
   font-size: 1.6rem;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 p {
   font-size: 1.6rem;
-  font-weight: 400;
   line-height: 1.2;
 }
 
+em {
+  font-weight: 400;
+}
+
 strong {
-    font-weight: 600;
+    font-weight: 900;
 }
 
 a {
@@ -27,13 +30,13 @@ a {
   transition: color .25s ease;
   &:hover {
     color: $color-primary;  
+    text-decoration: underline;
   }
 }
 
 code {
   background-color: $color-dark-grey;
   color: white;
-  margin: $size-medium 0;
   padding: $size-medium;
   border-radius: 0.3rem;
   font-weight: 600;

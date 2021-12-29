@@ -55,6 +55,9 @@ header {
 		a:hover {
 			color: $color-dark-grey;
 			text-decoration: none;
+			span {
+				text-decoration: underline;
+			}
 		}
 	}
 	nav {

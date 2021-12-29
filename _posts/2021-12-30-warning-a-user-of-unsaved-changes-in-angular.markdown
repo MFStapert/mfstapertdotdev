@@ -1,25 +1,25 @@
 ---
 layout: post
 title: 'Warning a user of unsaved changes, in a form, in angular'
-date: 2021-12-30 00:00:00 +0100
+date: 2021-12-29 00:00:00 +0100
 ---
 
-Recently I had to implement a feature to warn our users when leaving or refreshing a page when they have unsaved changes.
+Recently I had to implement warning in our app when users leave or refresh a page when they still have unsaved changes to a form.
 While seemingly simple, there is some nuance I thought was worth explaining.
 Also some of the solutions I encountered didn't cover all my use cases, so I hope this can serve as a reference for developers in a similar situation.
 
 The use cases I wanted to solve were as follows:
-- This behavior should be easy to implement across forms
+- This behavior should be easy to implement across multiple forms
 - This behavior should work for both empty forms and pre-filled forms (like an edit page)
 - This behavior should work with multiple formcontrols on a single page
-- A warning should be triggered on a reload and a navigation event
+- A warning should be triggered on a reload or a navigation event
 
 My implementation consists of 3 pieces, a service that tracks the state of formcontrols, a directive that is used to register a new form and a guard that gets triggered on navigation event.
 Al code examples are abbreviated to be more legible, a working example can be found [here](https://github.com/mfstapert/playground/blob/master/node/angular-form-unload/src/app/form/has-form-changed.directive.ts)
 
 ## HasFormChangedService
 
-This service tracks; the state a formcontrol starts with and the state which the formcontrol currently has.
+This service tracks the state a formcontrol starts with and the state which the formcontrol currently has.
 It does this through a simple interface:
 
 ```typescript
@@ -63,7 +63,6 @@ public setFormState(id: string, state?: unknown): void {
 
 With this logic you can check whether any form value has changed in the service by deep comparing the initial state with the current state.
 You can use this function later on to show the user a warning.
-I use the `ramda` package for deep comparing.
 
 ```typescript
 public haveFormsBeenChanged(): boolean {
@@ -114,9 +113,11 @@ export class HasFormChangedDirective implements OnInit, OnDestroy {
 		this.hasFormChangedService.removeForm(this.formId);
 		this.subscription?.unsubscribe();
 	}
+}
 ```
 
 There is a lot going on here, so let's unpack this :)
+
 This directive gets used on a page like this `[hasFormChanged]='formcontrol'`, this causes the directive to be created, before the onInit we get a formId from our service.
 I had to name the formControl input the same as the name of the directive or the directive wouldn't be found, I don't know why this is.
 We use this id to set the formState in our `OnInit` function, we can't do it earlier because formdata sometimes isn't loaded.

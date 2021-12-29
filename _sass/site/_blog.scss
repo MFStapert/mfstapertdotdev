@@ -27,6 +27,9 @@ article {
 			text-decoration: underline;
 		}
 	}
+    .highlight code span { 
+        line-height: 1.15; 
+    }
     > * {
         margin-bottom: $size-medium
     }

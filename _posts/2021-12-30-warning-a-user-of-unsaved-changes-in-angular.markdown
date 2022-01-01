@@ -4,7 +4,7 @@ title: 'Warning a user of unsaved changes, in a form, in angular'
 date: 2021-12-29 00:00:00 +0100
 ---
 
-Recently I had to implement warning in our app when users leave or refresh a page when they still have unsaved changes to a form.
+Recently I had to implement a warning in our app when users leave or refresh a page when they still have unsaved changes to a form.
 While seemingly simple, there is some nuance I thought was worth explaining.
 Also some of the solutions I encountered didn't cover all my use cases, so I hope this can serve as a reference for developers in a similar situation.
 

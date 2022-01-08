@@ -2,12 +2,12 @@
 layout: default
 ---
 
-<h1>Blog (WIP)</h1>
+<h1><span class="color-primary">#</span>Blog</h1>
 {% for post in site.posts %}
 <div class="blog-item">
 	<a href="{{ site.baseurl }}{{ post.url }}">
 		<h1>{{ post.title }}</h1>
-		<h3>Published: {{ post.date | date: "%Y-%m-%d" }}</h3>
 	</a>
+	<h3 class="color-primary">Published: {{ post.date | date: "%Y-%m-%d" }}</h3>
 </div>
 {% endfor %}

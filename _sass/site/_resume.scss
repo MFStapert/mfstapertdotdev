@@ -12,7 +12,6 @@
 .resume {
   &-section {
     width: 100%;
-    margin-bottom: $size-large;
     h1 {
       margin-bottom: $size-large;
     }
@@ -22,6 +21,7 @@
     display: grid;
     grid-template-columns: 50%;
     row-gap: $size-medium;
+    margin-bottom: $size-large;
     img {
       align-self: center;
       grid-column-start: 1;

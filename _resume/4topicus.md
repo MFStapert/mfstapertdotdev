@@ -19,5 +19,4 @@ technology:
 ---
 
 Worked on a debtor registration system.
-The system is applicable to multiple markets such as mortgages and
-invoicing.
+The system is applicable to multiple markets such as mortgages and invoicing.

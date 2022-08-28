@@ -2,7 +2,7 @@
 period: July 2020 - December 2021
 employer: Avisi
 title: Software engineer - notaries
-languages: Kotlin/Java/Typescript
+languages: Java/Typescript
 activities:
   - Design and implementation for the refactoring of a mission critical application
   - Implementation for the refactoring of the existing front-end to accommodate design system upgrade

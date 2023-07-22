@@ -1,27 +1,38 @@
 ---
-period: July 2020 - December 2021
+period: July 2020 - Current
 employer: Avisi
-title: Software engineer - notaries
-languages: Java/Typescript
+title: Software engineer
+languages: Kotlin/Typescript
 activities:
-  - Design and implementation for the refactoring of a mission critical application
-  - Implementation for the refactoring of the existing front-end to accommodate design system upgrade
-  - Rewrote existing test suite from protractor to cypress
-  - Setup codegen in front-end based on back-end models
-  - Design and implementation of a job for migrating a large volume of deeds (1M+) from database to CEPH object storage
+  - Designed and implemented the refactoring of multiple mission-critical applications.
+  - Performed design and planning for the rework of an existing front-end, transitioning it from an internal application to a customer-facing portal.
+  - Introduced contract-first development.
 
 technology:
-  - Angular
+  - Angular/React
+  - Tailwind
+  - Storybook
   - Spring boot
   - PostgreSQL
   - OpenAPI
   - Cucumber
   - Cypress
-  - Helm charts
-  - Gitlab CI
-  - Storybook
+  - K8
+  - Gitlab
   - Docker
-  - Gradle
 ---
 
-The project I did at Avisi while working for notaries. It was a major refactor of an existing mission critical application. The goal was to decouple and refactor the existing front-end so it could be deployed separately. Also upgrading all existing technology and dependencies to current (company) standards.
+During my tenure at Avisi I worked on a multitude of project in various team compositions
+
+The first project I did at Avisi was for notaries. It was a major refactor of an existing mission critical application, the goal was to decouple 2 intertwined applications.
+Also upgrading all existing technology and dependencies to current (company) standards.
+
+My next project was for a customer in the telecom industry; we were brought on board to rewrite their existing administration application.
+We rewrote an existing microservice architecture to a module based back-end.
+Reasons being reduced complexity and accelerated development.
+The front-end was also refactored to accommodate a redesign and simplifications.
+All rewriting work was done while keeping all old functionality up and running and also adding new features.
+We continued development on this application for a couple of months adding new features.
+
+The subsequent project was for a startup that seeking to develop a questionere tool.
+This tool would allow companies to find a implementation partner for various software packages.

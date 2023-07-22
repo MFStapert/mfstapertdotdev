@@ -7,4 +7,4 @@ activities:
   - Prioritising technical goals with project leads
 ---
 
-Setup and maintained a technical roadmap, prioritising it with project leads.
+Setup and maintenance of a technical roadmap, prioritizing it with project leads.

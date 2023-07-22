@@ -21,6 +21,6 @@ technology:
 ---
 
 Started development on a new system for teachers in primary education.
-The system is a piece of productivity software which connects to an existing administration application and a learning platform, it also has it's own own back-end.
-The system allows teachers to make plans based on test results and or learning goals, gives insight into test results and allows maintenance of schoolgroups.
-Challenges of the project were coupling with an existing legacy system and transforming very disperate data into useful information.
+The system is a piece of productivity software which connects to an existing administration application and a learning platform, it also has its own own back-end.
+The system allows teachers to make plans based on test results and or learning goals, gives insight into test results and allows maintenance of school groups.
+Challenges of the project were coupling with an existing legacy system and transforming very disparate data into useful information.

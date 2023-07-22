@@ -34,5 +34,5 @@ The front-end was also refactored to accommodate a redesign and simplifications.
 All rewriting work was done while keeping all old functionality up and running and also adding new features.
 We continued development on this application for a couple of months adding new features.
 
-The subsequent project was for a startup that seeking to develop a questionere tool.
-This tool would allow companies to find a implementation partner for various software packages.
+The subsequent project was for a startup seeking to develop a questionnaire tool.
+This tool would allow companies to find an implementation partner for various software packages.

@@ -1,5 +1,5 @@
 ---
-period: July 2020 - Februari 2023
+period: July 2020 - Februari 2024
 employer: Avisi
 title: Software engineer
 languages: Typescript/Kotlin

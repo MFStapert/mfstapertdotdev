@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[node] Why I no longer use npx in CI
+title: '[node] Why I no longer use npx in CI'
 date: 2024-04-02 00:00:00 +0100
 ---
 

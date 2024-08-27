@@ -5,7 +5,7 @@ date: 2024-08-20 00:00:00 +0100
 ---
 
 I tried running testcontainers on github actions, the trick to running them was increasing the default timeout for your tests.
-Github has out of the box support for docker, there is a delay with startup though, so you need to account for that
+Github has out of the box support for docker, there is a delay with startup though, so you need to account for that.
 I thought this was a hack, but the official testcontainers repo uses this approach as well.
 
 ```json

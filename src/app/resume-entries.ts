@@ -1,4 +1,5 @@
 import frontMatter from 'front-matter';
+import { marked } from 'marked';
 
 export interface ResumeAttributes {
   period: string;
@@ -30,7 +31,10 @@ export function loadResume(): ResumeEntry[] {
       return {
         order: match ? Number(match[1]) : 0,
         attributes: parsed.attributes,
-        body: parsed.body.trim(),
+        // analog-markdown inserts the string as HTML and does not run Markdown
+        // when content is passed in. Render paragraphs here so job text matches
+        // the Jekyll pages.
+        body: marked.parse(parsed.body.trim(), { async: false }) as string,
       };
     })
     .sort((a, b) => b.order - a.order);

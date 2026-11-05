@@ -3,7 +3,8 @@
 import { defineConfig } from 'vite';
 import analog from '@analogjs/platform';
 
-import { contentSlug } from './src/app/post-path.ts';
+import type PostAttributes from './src/app/post-attributes.ts';
+import { contentSlug, sitemapLastmod } from './src/app/post-path.ts';
 
 // https://vitejs.dev/config/
 export default defineConfig(() => ({
@@ -36,6 +37,9 @@ export default defineConfig(() => ({
         },
       },
       prerender: {
+        sitemap: {
+          host: 'https://mfstapert.dev',
+        },
         routes: async () => [
           '/',
           '/resume',
@@ -43,8 +47,11 @@ export default defineConfig(() => ({
           '/404.html',
           {
             contentDir: 'src/content/blog',
-            transform: (file: { attributes: { slug?: string }; name: string }) =>
+            transform: (file: { attributes: PostAttributes; name: string }) =>
               `/blog/${contentSlug(file.attributes.slug, file.name)}`,
+            sitemap: (file: { attributes: PostAttributes }) => ({
+              lastmod: sitemapLastmod(file.attributes.published),
+            }),
           },
         ],
       },

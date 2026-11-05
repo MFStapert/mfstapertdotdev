@@ -9,7 +9,7 @@
     "ng": "ng",
     "dev": "vite",
     "start": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/prune-sitemap.mjs",
     "watch": "vite build --watch",
     "test": "vitest run",
     "preview": "vite preview --outDir dist/analog/public"

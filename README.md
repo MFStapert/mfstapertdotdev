@@ -2,9 +2,9 @@
 
 Personal site for Marijn Stapert: [mfstapert.dev](https://mfstapert.dev).
 
-This branch is an Analog (Angular + Vite) rewrite. It is not what GitHub Pages publishes. `master` is still the Jekyll site, built by the legacy Pages builder from the repository root.
+The site is an [Analog](https://analogjs.org/) app (Angular and Vite). `npm run build` prerenders static HTML to `dist/analog/public`.
 
-## Analog app
+## Develop
 
 Requires Node >=26.
 
@@ -13,21 +13,26 @@ npm install
 npm start
 ```
 
-The dev server runs at <http://localhost:5173>.
+The dev server is at <http://localhost:5173>.
 
 ```sh
-npm run build
 npm test
+npm run build
 ```
 
-`npm run build` prerenders the static site to `dist/analog/public`.
+## Publishing
 
-## Jekyll site on master
+Merging to `master` does not, by itself, switch the live site to this app.
 
-`master` still previews with Docker:
+The workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) runs only on pushes to `master`. It builds the static site and deploys with GitHub's Pages actions. That deploy publishes only after the repository's Pages source is **GitHub Actions**. Until then, Pages is the legacy Jekyll builder on `master`.
 
-```sh
-docker compose up
-```
+### Cutover, done by hand
 
-Jekyll listens on port 4000. That workflow goes away when the Analog cutover is merged and Pages is switched to GitHub Actions.
+1. Merge this stack into `master` only when you are ready to change the live site. If Pages is still "Deploy from a branch" / `master` / `/`, the next push makes Jekyll try to publish the Analog tree.
+2. Right away, set **Settings → Pages → Build and deployment → Source** to **GitHub Actions**. Leave the custom domain `mfstapert.dev` and HTTPS as they are. Do not change DNS.
+3. Watch the **Deploy site** workflow. Confirm `/`, `/blog`, one post, `/resume`, and an unknown path (the custom 404).
+4. If the deploy fails, revert `master` to the last Jekyll commit and set Pages back to **Deploy from a branch**, branch `master`, folder `/`.
+
+`CNAME` in the repo root and in `public/` both contain `mfstapert.dev`. The build copies `public/CNAME` and `public/.nojekyll` into the Pages artifact.
+
+Old dated post URLs are not redirected. Posts are `/blog/<slug>`.

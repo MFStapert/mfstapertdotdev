@@ -1,5 +1,19 @@
 # Migration plan: mfstapert.dev to Analog
 
+Implementation of this plan lives in the phase 1–4 pull requests. A few decisions differ from the open questions below:
+
+- Post URLs are `/blog/<slug>`. The old dated paths are not preserved and are not redirected.
+- Document titles stay in the `mfstapert.` style, including each post.
+- Code blocks use Shiki `github-light`.
+- A sitemap is generated. `/404.html` is prerendered and omitted from the sitemap.
+- `/blog/` and `/resume/` may return 200. Canonical URLs have no trailing slash except `/`.
+- Punctuation is the characters in the Markdown source (straight quotes).
+- GoatCounter counts the first full load and later client-side navigations.
+- Source Sans Pro and Font Awesome stay on their existing CDNs.
+- There is no `gh-pages` branch. Cutover is the manual Pages setting change described in `README.md`. The Actions workflow runs only after it is merged to `master`.
+
+The rest of this document is the original plan.
+
 Plan for moving [mfstapert.dev](https://mfstapert.dev) from Jekyll on GitHub Pages to [Analog](https://analogjs.org/). This document is the only change in its PR. Later PRs do the migration.
 
 Analog docs referenced below were checked on 5 November 2026:

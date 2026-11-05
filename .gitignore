@@ -48,7 +48,3 @@ Thumbs.db
 
 # Vitest output
 .vitest/
-
-# Jekyll (removed in the hosting-cutover phase)
-_site
-.jekyll-metadata

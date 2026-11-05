@@ -1,5 +1,4 @@
 import frontMatter from 'front-matter';
-import { marked } from 'marked';
 
 export interface ResumeAttributes {
   period: string;
@@ -14,6 +13,20 @@ export interface ResumeEntry {
   order: number;
   attributes: ResumeAttributes;
   body: string;
+}
+
+function escapeHtml(value: string): string {
+  return value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+}
+
+/** Resume copy is plain paragraphs. Render it here so the page does not depend on Marked. */
+export function renderResumeBody(markdown: string): string {
+  return markdown
+    .trim()
+    .split(/\n{2,}/)
+    .map((paragraph) => `<p>${escapeHtml(paragraph.replace(/\s+/g, ' ').trim())}</p>`)
+    .filter((paragraph) => paragraph !== '<p></p>')
+    .join('');
 }
 
 const files = import.meta.glob<string>('../data/resume/*.md', {
@@ -32,9 +45,8 @@ export function loadResume(): ResumeEntry[] {
         order: match ? Number(match[1]) : 0,
         attributes: parsed.attributes,
         // analog-markdown inserts the string as HTML and does not run Markdown
-        // when content is passed in. Render paragraphs here so job text matches
-        // the Jekyll pages.
-        body: marked.parse(parsed.body.trim(), { async: false }) as string,
+        // when content is passed in.
+        body: renderResumeBody(parsed.body),
       };
     })
     .sort((a, b) => b.order - a.order);

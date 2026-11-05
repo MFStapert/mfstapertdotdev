@@ -98,3 +98,16 @@ footer {
 		}
 	}
 }
+
+// The routed page is a component host. Make its children direct flex items of
+// .container, which is how the Jekyll layouts emitted the page.
+router-outlet {
+	display: none;
+}
+
+app-home,
+app-blog,
+app-resume,
+app-not-found {
+	display: contents;
+}

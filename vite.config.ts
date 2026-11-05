@@ -22,8 +22,29 @@ export default defineConfig(() => ({
     analog({
       static: true,
       ssr: true,
+      content: {
+        highlighter: 'shiki',
+        shikiOptions: {
+          highlight: {
+            theme: 'github-light',
+          },
+          highlighter: {
+            additionalLangs: ['typescript', 'plaintext'],
+          },
+        },
+      },
       prerender: {
-        routes: async () => ['/', '/resume', '/blog', '/404.html'],
+        routes: async () => [
+          '/',
+          '/resume',
+          '/blog',
+          '/404.html',
+          {
+            contentDir: 'src/content/blog',
+            transform: (file: { attributes: { slug?: string }; name: string }) =>
+              `/blog/${file.attributes.slug || file.name}`,
+          },
+        ],
       },
       // GitHub Pages serves this file for unknown URLs. Skip SSR so the
       // client router can hydrate it as the requested route instead of the

@@ -27,8 +27,21 @@ article {
 			text-decoration: underline;
 		}
 	}
-    .highlight code span { 
-        line-height: 1.15; 
+    pre.shiki {
+        width: 75%;
+        overflow-x: auto;
+        padding: $size-medium;
+        border-radius: 0.3rem;
+
+        code {
+            display: block;
+            padding: 0;
+            background: transparent;
+            color: inherit;
+            font-size: 1.4rem;
+            line-height: 1.45;
+            white-space: pre;
+        }
     }
     > * {
         margin-bottom: $size-medium

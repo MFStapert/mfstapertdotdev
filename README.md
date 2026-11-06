@@ -6,7 +6,7 @@ This branch is an Analog (Angular + Vite) rewrite. It is not what GitHub Pages p
 
 ## Analog app
 
-Requires Node >=22.22.3.
+Requires Node >=26.
 
 ```sh
 npm install

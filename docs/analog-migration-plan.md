@@ -4,7 +4,7 @@ Plan for moving [mfstapert.dev](https://mfstapert.dev) from Jekyll on GitHub Pag
 
 Analog docs referenced below were checked on 5 November 2026:
 
-- [Getting started](https://analogjs.org/docs/getting-started) (Node 22 recommended, Angular 17+)
+- [Getting started](https://analogjs.org/docs/getting-started) (this project requires Node >=26, the current LTS; Angular 17+)
 - [Version compatibility](https://analogjs.org/docs/guides/compatibility) (`create-analog@latest`; Analog `latest` listed with Angular 20 and 21 on Vite 7, and an Nx row for Angular 22 on Vite 8)
 - [create-analog](https://analogjs.org/docs/packages/create-analog/overview) (`blog` template preset)
 - [Routing](https://analogjs.org/docs/features/routing/overview), [route metadata](https://analogjs.org/docs/features/routing/metadata), [content](https://analogjs.org/docs/features/routing/content)
@@ -127,7 +127,7 @@ Static files that must keep working:
 
 ## Target architecture
 
-A Vite + Angular app at the **repository root**, scaffolded with `npm create analog@latest` on Node 22. The `blog` template is a useful reference for `provideContent`, `injectContentFiles`, and `MarkdownComponent`. Delete its sample posts before committing. Record the resolved Analog, Angular, and Vite versions in the scaffold PR. Analog's compatibility table treats "latest" as the supported line for current Angular majors; pin the lockfile rather than floating `latest` in CI.
+A Vite + Angular app at the **repository root**, scaffolded with `npm create analog@latest` on Node >=26. The `blog` template is a useful reference for `provideContent`, `injectContentFiles`, and `MarkdownComponent`. Delete its sample posts before committing. Record the resolved Analog, Angular, and Vite versions in the scaffold PR. Analog's compatibility table treats "latest" as the supported line for current Angular majors; pin the lockfile rather than floating `latest` in CI.
 
 Production is a static site. No Node server, no API routes, no Nx.
 
@@ -363,7 +363,7 @@ If the Analog tree lands on `master` while the Pages source is still "branch `ma
 2. In the repo settings, set Pages to deploy from branch `gh-pages` / root. Confirm `https://mfstapert.dev` still looks like production. Rollback from this moment until step 4 is "Pages source = `gh-pages` branch", which is still the old site.
 3. Merge the migration branch to `master`. Add `.github/workflows/pages.yml` that:
    - runs on push to `master` (and on `workflow_dispatch`)
-   - `actions/checkout`, `actions/setup-node` with Node 22 and npm cache
+   - `actions/checkout`, `actions/setup-node` with `node-version-file: package.json` (engines `>=26`) and npm cache
    - `npm ci`, `npm run build`
    - uploads `dist/analog/public` with `actions/upload-pages-artifact`
    - deploys with `actions/deploy-pages`
@@ -377,7 +377,7 @@ Rollback after step 4: redeploy the previous Actions artifact, or point Pages ba
 
 Local Docker preview goes away with the Jekyll files. Replacement is `npm start` (Vite, port 5173). No new hosting account, no server process, no change to the GoatCounter property beyond the script still being on the page.
 
-Node in CI is 22, matching Analog's current getting-started guidance. The older Pages examples that pin Node 20 should not be copied.
+Node in CI is >=26, the current LTS, taken from `package.json` `engines`. The older Pages examples that pin Node 20 should not be copied.
 
 ## Risks
 

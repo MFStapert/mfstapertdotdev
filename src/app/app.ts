@@ -1,9 +1,8 @@
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { Component, PLATFORM_ID, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
-import { filter } from 'rxjs';
-
-import { canonicalHref } from './canonical';
+import { filter, skip } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -46,33 +45,19 @@ import { canonicalHref } from './canonical';
 })
 export class App {
   constructor() {
-    const router = inject(Router);
-    const doc = inject(DOCUMENT);
-    const platformId = inject(PLATFORM_ID);
+    if (!isPlatformBrowser(inject(PLATFORM_ID))) {
+      return;
+    }
 
-    const applyCanonical = (url: string) => {
-      let link = doc.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-      if (!link) {
-        link = doc.createElement('link');
-        link.setAttribute('rel', 'canonical');
-        doc.head.appendChild(link);
-      }
-      link.setAttribute('href', canonicalHref(url));
-    };
-
-    applyCanonical(router.url);
-    router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe((event) => {
-      applyCanonical(event.urlAfterRedirects);
-      if (!isPlatformBrowser(platformId)) {
-        return;
-      }
-      const goatcounter = (
-        window as Window & { goatcounter?: { count: (options: { path: string }) => void } }
-      ).goatcounter;
-      // The script counts the first load. Count later client navigations only.
-      if (event.id > 1) {
-        goatcounter?.count({ path: event.urlAfterRedirects });
-      }
-    });
+    // count.js records the first load. Later router navigations need an explicit count.
+    inject(Router)
+      .events.pipe(
+        filter((event) => event instanceof NavigationEnd),
+        skip(1),
+        takeUntilDestroyed(),
+      )
+      .subscribe(() => {
+        window.goatcounter?.count({ path: location.pathname });
+      });
   }
 }

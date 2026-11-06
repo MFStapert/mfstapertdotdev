@@ -11,7 +11,7 @@ export const routeMeta: RouteMeta = {
   selector: 'app-not-found',
   template: `
     <h1 class="hero-title">
-      <span class="color-primary">&lt; </span>404<span class="color-primary">/&gt;</span>
+      <span class="color-primary"> &lt; </span>404<span class="color-primary">/&gt;</span>
     </h1>
   `,
 })

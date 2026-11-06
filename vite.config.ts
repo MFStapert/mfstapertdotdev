@@ -25,6 +25,14 @@ export default defineConfig(() => ({
       prerender: {
         routes: async () => ['/', '/resume', '/blog', '/404.html'],
       },
+      // GitHub Pages serves this file for unknown URLs. Skip SSR so the
+      // client router can hydrate it as the requested route instead of the
+      // prerendered 404 markup.
+      nitro: {
+        routeRules: {
+          '/404.html': { ssr: false },
+        },
+      },
     }),
   ],
   test: {

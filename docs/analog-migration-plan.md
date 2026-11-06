@@ -2,12 +2,12 @@
 
 Implementation of this plan lives in the phase 1–4 pull requests. A few decisions differ from the open questions below:
 
-- Post URLs are `/blog/<slug>`. The old dated paths are not preserved and are not redirected.
-- Document titles stay in the `mfstapert.` style, including each post.
+- Post URLs are `/blog/<slug>`. The old dated paths (the UTC days the Jekyll site served) meta-refresh to those slugs.
+- Document titles stay in the `mfstapert.` style, including each post. The home page keeps the typographic apostrophe.
 - Code blocks use Shiki `github-light`.
 - A sitemap is generated. `/404.html` is prerendered and omitted from the sitemap.
-- `/blog/` and `/resume/` may return 200. Canonical URLs have no trailing slash except `/`.
-- Punctuation is the characters in the Markdown source (straight quotes).
+- `/blog/` and `/resume/` may return 200. There is no canonical link.
+- Resume and post copy keeps the source punctuation, except the typos called out in review.
 - GoatCounter counts the first full load and later client-side navigations.
 - Source Sans Pro and Font Awesome stay on their existing CDNs.
 - There is no `gh-pages` branch. Cutover is the manual Pages setting change described in `README.md`. The Actions workflow runs only after it is merged to `master`.

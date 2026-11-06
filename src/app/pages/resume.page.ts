@@ -1,5 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Component } from '@angular/core';
 import { RouteMeta } from '@analogjs/router';
 
 import { loadResume } from '../resume-entries';
@@ -45,7 +44,7 @@ export const routeMeta: RouteMeta = {
             <span class="color-primary">{{ job.attributes.employer }}</span>
           </div>
 
-          <article [innerHTML]="asHtml(job.body)"></article>
+          <article [innerHTML]="job.body"></article>
 
           @if (job.attributes.activities) {
             <p class="color-primary">Key activities:</p>
@@ -69,10 +68,5 @@ export const routeMeta: RouteMeta = {
   `,
 })
 export default class ResumePage {
-  private readonly sanitizer = inject(DomSanitizer);
   readonly jobs = loadResume();
-
-  asHtml(value: string): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(value);
-  }
 }

@@ -1,13 +1,9 @@
 ---
 title: "mfstapert.[node] why i no longer use npx in ci"
 slug: why-i-no-longer-use-npx
-published: 2024-04-02
+published: "2024-04-02"
 displayTitle: "[node] Why I no longer use npx in CI"
 ---
-<article>
-<h1>[node] Why I no longer use npx in CI</h1>
-<h3 class="color-primary">Published: 2024-04-02</h3>
-
 I always prefixed "scripts" in the `scripts` property of my `package.json` with `npx`.
 But recently I came to the conclusion this might be a bad idea, why? Let's take a look at what `npx` does. 
 
@@ -28,4 +24,3 @@ This can lead to unintended behavior or worse, false positives.
 
 Running your scripts without `npx` ensures this is not possible, your CI environment will only use the dependencies specified or break.
 This seems preferable to me versus a mechanism that can potentially introduce flakiness.
-</article>

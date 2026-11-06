@@ -1,13 +1,9 @@
 ---
 title: "mfstapert.[angular] fix for custom angular formcontrol retaining input value after form reset"
 slug: bugfix-for-angular-retaining-input-value
-published: 2024-03-13
+published: "2024-03-13"
 displayTitle: "[angular] Fix for custom angular formcontrol retaining input value after form reset"
 ---
-<article>
-<h1>[angular] Fix for custom angular formcontrol retaining input value after form reset</h1>
-<h3 class="color-primary">Published: 2024-03-13</h3>
-
 I came across a behavior in Angular where a custom formcontrol (using `ControlValueAccessor`) retained its value in the UI after being reset.
 Credit to this [stackoverflow question](https://stackoverflow.com/questions/76389471/angular-retaining-input-value-after-form-reset), which helped me fix this issue.
 My post gives a concise description, fix and explanation for this behavior.
@@ -90,4 +86,3 @@ There is a mention in the [MDN docs](https://developer.mozilla.org/en-US/docs/We
 But when using normal input binding, the value is also mirrored...
 
 If you want to look at full code examples you can find them [here](https://github.com/MFStapert/the_bin/tree/master/node/angular-control-retains-value).
-</article>

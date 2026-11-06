@@ -1,13 +1,9 @@
 ---
 title: "mfstapert.[node] testcontainers with github actions"
 slug: testcontainers-with-github-actions
-published: 2024-08-20
+published: "2024-08-20"
 displayTitle: "[node] Testcontainers with github actions"
 ---
-<article>
-<h1>[node] Testcontainers with github actions</h1>
-<h3 class="color-primary">Published: 2024-08-20</h3>
-
 I tried running testcontainers on github actions, the trick to running them was increasing the default timeout for your tests.
 Github has out of the box support for docker, there is a delay with startup though, so you need to account for that.
 I thought this was a hack, but the official testcontainers repo uses this approach as well.
@@ -90,4 +86,3 @@ describe('users e2e', () => {
   });
 });
 ```
-</article>

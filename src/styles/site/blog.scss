@@ -45,6 +45,13 @@ article {
     > * {
         margin-bottom: $size-medium
     }
+
+    p,
+    pre,
+    ul,
+    h2 {
+        margin-bottom: $size-medium;
+    }
 }
 
 analog-markdown-route,

@@ -1,13 +1,9 @@
 ---
 title: "mfstapert.[angular] minimal eslint and prettier setup"
 slug: eslint-prettier
-published: 2024-05-14
+published: "2024-05-14"
 displayTitle: "[angular] Minimal ESLint and prettier setup"
 ---
-<article>
-<h1>[angular] Minimal ESLint and prettier setup</h1>
-<h3 class="color-primary">Published: 2024-05-14</h3>
-
 Recently I had the assignment to set up prettier and ESLint for new projects at my company.
 Most projects we do involve 2 webapps in a mono repo and 2-3 front-end developers working at a time.
 In this article I'll summarize my findings to save you, the reader, some time setting this up.
@@ -139,4 +135,3 @@ Most new tooling seems to focus on speed, but I'd like to see tooling that reduc
 
 Having a decent set-up for prettier and ESLint can provide a decent basis for code quality.
 By keeping the configuration minimal you can later on easily modify and extend it when specific needs arise.
-</article>

@@ -1,13 +1,9 @@
 ---
 title: "mfstapert.[angular] warning a user of unsaved changes, in a form"
 slug: warning-a-user-of-unsaved-changes-in-angular
-published: 2021-12-29
+published: "2021-12-29"
 displayTitle: "[angular] Warning a user of unsaved changes, in a form"
 ---
-<article>
-<h1>[angular] Warning a user of unsaved changes, in a form</h1>
-<h3 class="color-primary">Published: 2021-12-29</h3>
-
 Recently I had to implement a warning in our app when users leave or refresh a page when they still have unsaved changes to a form.
 While seemingly simple, there is some nuance I thought was worth explaining.
 Also some of the solutions I encountered didn't cover all my use cases, so I hope this can serve as a reference for developers in a similar situation.
@@ -188,4 +184,3 @@ I would like to have a solution for displaying the same type of warning to the u
 Also I'm pretty sure the HostListeners in the Directive can be moved to App.Component or a similair central point.
 
 Again source can be found [here](https://github.com/mfstapert/playground/tree/master/node/angular-form-unload)
-</article>

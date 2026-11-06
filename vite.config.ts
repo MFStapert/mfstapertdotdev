@@ -3,6 +3,8 @@
 import { defineConfig } from 'vite';
 import analog from '@analogjs/platform';
 
+import { contentSlug } from './src/app/post-path.ts';
+
 // https://vitejs.dev/config/
 export default defineConfig(() => ({
   css: {
@@ -42,7 +44,7 @@ export default defineConfig(() => ({
           {
             contentDir: 'src/content/blog',
             transform: (file: { attributes: { slug?: string }; name: string }) =>
-              `/blog/${file.attributes.slug || file.name}`,
+              `/blog/${contentSlug(file.attributes.slug, file.name)}`,
           },
         ],
       },

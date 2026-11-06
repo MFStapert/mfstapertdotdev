@@ -1,5 +1,5 @@
 ---
-period: Januari 2020 - July 2020
+period: January 2020 - July 2020
 employer: Topicus education
 title: Technical lead
 activities:

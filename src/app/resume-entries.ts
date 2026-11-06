@@ -44,8 +44,6 @@ export function loadResume(): ResumeEntry[] {
       return {
         order: match ? Number(match[1]) : 0,
         attributes: parsed.attributes,
-        // analog-markdown inserts the string as HTML and does not run Markdown
-        // when content is passed in.
         body: renderResumeBody(parsed.body),
       };
     })

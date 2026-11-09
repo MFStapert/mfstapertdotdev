@@ -2,14 +2,14 @@
 
 Personal site for Marijn Stapert: [mfstapert.dev](https://mfstapert.dev).
 
-The site is an [Analog](https://analogjs.org/) app (Angular and Vite). `npm run build` prerenders static HTML to `dist/analog/public`.
+The site is an [Analog](https://analogjs.org/) app (Angular and Vite). `npm run build` prerenders static HTML to `dist/analog/public`, which GitHub Pages serves.
 
 ## Develop
 
-Requires Node >=26.
+Requires Node >=26 (see `package.json` `engines`).
 
 ```sh
-npm install
+npm ci
 npm start
 ```
 
@@ -18,21 +18,20 @@ The dev server is at <http://localhost:5173>.
 ```sh
 npm test
 npm run build
+npm run preview
 ```
 
-## Publishing
+`preview` serves the prerendered build.
 
-Merging to `master` does not, by itself, switch the live site to this app.
+## Project layout
 
-The workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) runs only on pushes to `master`. It builds the static site and deploys with GitHub's Pages actions. That deploy publishes only after the repository's Pages source is **GitHub Actions**. Until then, Pages is the legacy Jekyll builder on `master`.
+- `src/app/pages` — routes (`/`, `/blog`, `/resume`, and the 404)
+- `src/content/blog` — posts, served at `/blog/<slug>`
+- `src/data/resume` — resume entries rendered on `/resume`
+- `public/` — files copied into the build as-is, including `CNAME`
 
-### Cutover, done by hand
+## Deploy
 
-1. Merge this stack into `master` only when you are ready to change the live site. If Pages is still "Deploy from a branch" / `master` / `/`, the next push makes Jekyll try to publish the Analog tree.
-2. Right away, set **Settings → Pages → Build and deployment → Source** to **GitHub Actions**. Leave the custom domain `mfstapert.dev` and HTTPS as they are. Do not change DNS.
-3. Watch the **Deploy site** workflow. Confirm `/`, `/blog`, one post, `/resume`, and an unknown path (the custom 404).
-4. If the deploy fails, revert `master` to the last Jekyll commit and set Pages back to **Deploy from a branch**, branch `master`, folder `/`.
+Pushes to `master` run [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The workflow installs dependencies, runs the tests and the build, and deploys `dist/analog/public` with GitHub's Pages actions.
 
-`CNAME` in the repo root and in `public/` both contain `mfstapert.dev`. The build copies `public/CNAME` and `public/.nojekyll` into the Pages artifact.
-
-Old dated post URLs are not redirected. Posts are `/blog/<slug>`.
+`public/CNAME` (`mfstapert.dev`) is copied into that artifact so the custom domain stays attached. Posts are `/blog/<slug>`. The old dated Jekyll URLs are not redirected.

@@ -11,52 +11,57 @@ export const routeMeta: RouteMeta = {
 @Component({
   selector: 'resume',
   template: `
-    <section class="resume-section resume-personalia">
-      <img src="/assets/imgs/mugshot.jpg" alt="Marijn Stapert" />
+    <section class="mb-large grid w-full grid-cols-[50%] gap-y-medium narrow:inline">
+      <img
+        class="col-start-1 row-span-2 box-content size-50 self-center rounded border narrow:hidden"
+        src="/assets/imgs/mugshot.jpg"
+        alt="Marijn Stapert"
+      />
 
-      <div class="personalia">
-        <h3 class="underline">Personalia:</h3>
-        <p>Date of birth: <span class="color-primary">18-09-1991</span></p>
-        <p>Residence: <span class="color-primary">Deventer</span></p>
-      </div>
-
-      <div class="personalia">
-        <h3 class="underline">Education:</h3>
-        <p>2009: <span class="color-primary">HAVO NT</span></p>
-        <p>2016: <span class="color-primary">Bachelor Software engineering</span></p>
-        <p>2023: <span class="color-primary">Certified Kubernetes Application Developer</span></p>
-      </div>
+      @for (block of personalia; track block.heading) {
+        <div class="col-start-2 border-l pl-medium">
+          <h3 class="my-small underline">{{ block.heading }}:</h3>
+          @for (row of block.rows; track row.label) {
+            <p>
+              {{ row.label }}: <span class="text-primary">{{ row.value }}</span>
+            </p>
+          }
+        </div>
+      }
     </section>
 
-    <section class="resume-section">
-      <h1>Work experience:</h1>
+    <section class="w-full">
+      <h1 class="mb-large">Work experience:</h1>
 
       @for (job of jobs; track job.order) {
-        <div class="resume-experience">
-          <div class="resume-experience-header">
-            <h2 class="color-primary">
+        <div class="mb-large border-l pl-medium">
+          <div class="mb-medium">
+            <h2 class="text-primary">
               {{ job.attributes.title }}
               @if (job.attributes.languages) {
                 <em> ({{ job.attributes.languages }})</em>
               }
             </h2>
             {{ job.attributes.period }}:
-            <span class="color-primary">{{ job.attributes.employer }}</span>
+            <span class="text-primary">{{ job.attributes.employer }}</span>
           </div>
 
-          <article [innerHTML]="job.body"></article>
+          <article
+            class="mb-medium inline-block space-y-medium md:w-[65%]"
+            [innerHTML]="job.body"
+          ></article>
 
           @if (job.attributes.activities) {
-            <p class="color-primary">Key activities:</p>
-            <ul>
+            <p class="text-primary">Key activities:</p>
+            <ul class="pt-small pb-medium leading-[1.4]">
               @for (activity of job.attributes.activities; track activity) {
                 <li>{{ activity }}</li>
               }
             </ul>
           }
           @if (job.attributes.technology) {
-            <p class="color-primary">Technology:</p>
-            <ul class="multi-column">
+            <p class="text-primary">Technology:</p>
+            <ul class="columns-3 gap-x-5 pt-small pb-medium leading-[1.4]">
               @for (technology of job.attributes.technology; track technology) {
                 <li>{{ technology }}</li>
               }
@@ -68,5 +73,23 @@ export const routeMeta: RouteMeta = {
   `,
 })
 export default class ResumePage {
+  readonly personalia = [
+    {
+      heading: 'Personalia',
+      rows: [
+        { label: 'Date of birth', value: '18-09-1991' },
+        { label: 'Residence', value: 'Deventer' },
+      ],
+    },
+    {
+      heading: 'Education',
+      rows: [
+        { label: '2009', value: 'HAVO NT' },
+        { label: '2016', value: 'Bachelor Software engineering' },
+        { label: '2023', value: 'Certified Kubernetes Application Developer' },
+      ],
+    },
+  ];
+
   readonly jobs = loadResume();
 }

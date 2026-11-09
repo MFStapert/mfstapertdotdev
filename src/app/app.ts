@@ -11,30 +11,37 @@ import { filter, skip } from 'rxjs';
   preserveWhitespaces: true,
   template: `
     <header>
-      <div class="container">
-        <h1 class="site-title">
-          <a routerLink="/">{{ '{' }} <span class="color-primary">mfstapert</span>; {{ '}' }}</a>
+      <div class="page-container">
+        <h1 class="flex-[1_1_50%] py-large">
+          <a class="group hover:text-dark-grey hover:no-underline" routerLink="/"
+            >{{ '{' }} <span class="text-primary group-hover:underline">mfstapert</span>;
+            {{ '}' }}</a
+          >
         </h1>
-        <nav class="main-nav">
-          <ul>
-            <li><a routerLink="/">Home</a></li>
-            <li><a routerLink="/resume">Resume</a></li>
-            <li><a routerLink="/blog">Blog</a></li>
+        <nav class="flex flex-[1_1_50%] flex-row-reverse">
+          <ul class="mt-8.5">
+            @for (link of navLinks; track link.path) {
+              <li class="inline-block">
+                <a class="px-large text-lg/[30px]" [routerLink]="link.path">{{ link.label }}</a>
+              </li>
+            }
           </ul>
         </nav>
       </div>
     </header>
 
-    <main>
-      <div class="container">
+    <main class="border-y bg-light-grey p-large">
+      <div class="page-container">
         <router-outlet />
       </div>
     </main>
 
-    <footer>
-      <div class="container">
-        <h2><span class="color-primary">Want to get in touch? </span>Find me here:</h2>
-        <div class="social-icons">
+    <footer class="p-large">
+      <div class="page-container">
+        <h2 class="w-full">
+          <span class="text-primary">Want to get in touch? </span>Find me here:
+        </h2>
+        <div class="py-medium text-[1.875rem]/none *:pr-large">
           <a href="https://github.com/MFStapert"><i class="fa fa-github"></i></a>
           <a href="https://www.linkedin.com/in/marijn-stapert-05091182/"
             ><i class="fa fa-linkedin"></i
@@ -46,6 +53,12 @@ import { filter, skip } from 'rxjs';
   `,
 })
 export class App {
+  readonly navLinks = [
+    { path: '/', label: 'Home' },
+    { path: '/resume', label: 'Resume' },
+    { path: '/blog', label: 'Blog' },
+  ];
+
   constructor() {
     if (!isPlatformBrowser(inject(PLATFORM_ID))) {
       return;

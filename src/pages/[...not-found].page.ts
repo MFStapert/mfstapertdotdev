@@ -10,8 +10,8 @@ export const routeMeta: RouteMeta = {
 @Component({
   selector: 'not-found',
   template: `
-    <h1 class="hero-title">
-      <span class="color-primary"> &lt; </span>404<span class="color-primary">/&gt;</span>
+    <h1 class="max-w-182 leading-15">
+      <span class="text-primary"> &lt; </span>404<span class="text-primary">/&gt;</span>
     </h1>
   `,
 })

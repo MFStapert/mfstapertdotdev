@@ -26,10 +26,10 @@ export const routeMeta: RouteMeta = {
   imports: [MarkdownComponent],
   template: `
     @if (post(); as post) {
-      <article>
+      <article class="inline-block">
         <h1>{{ post.attributes.displayTitle }}</h1>
-        <h3 class="color-primary">Published: {{ label(post.attributes.published) }}</h3>
-        <analog-markdown [content]="post.content" />
+        <h3 class="mb-large text-primary">Published: {{ label(post.attributes.published) }}</h3>
+        <analog-markdown class="prose prose-site" [content]="post.content" />
       </article>
     }
   `,

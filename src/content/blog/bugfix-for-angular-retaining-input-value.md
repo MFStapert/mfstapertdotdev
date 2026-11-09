@@ -9,7 +9,7 @@ I came across a behavior in Angular where a custom formcontrol (using `ControlVa
 Credit to this [stackoverflow question](https://stackoverflow.com/questions/76389471/angular-retaining-input-value-after-form-reset), which helped me fix this issue.
 My post gives a concise description, fix and explanation for this behavior.
 
-# The behavior
+## The behavior
 
 ```typescript
 @Component({
@@ -49,7 +49,7 @@ On the other side you have a `writeValue` function that the form uses to write t
 Now if you write anything in your input in the ui and call `setValue`, the ui will update.
 However, when you call `.reset()` on the form the input will retain its value.
 
-# The fix
+## The fix
 
 The solution is to write the value directly to the view, you don't need to keep an internal `value`;
 
@@ -64,7 +64,7 @@ The solution is to write the value directly to the view, you don't need to keep 
   }
 ```
 
-# The explanation
+## The explanation
 
 An answer is actually in the comments of the `ControlValueAccessor` interface.
 
@@ -87,4 +87,4 @@ It's still strange behavior though, the first solution only had an issue when th
 There is a mention in the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#value) that the value attribute is used for initial value.
 But when using normal input binding, the value is also mirrored...
 
-If you want to look at full code examples you can find them [here](https://github.com/MFStapert/the_bin/tree/master/node/angular-control-retains-value).
+If you want to look at full code examples you can find them in [the angular-control-retains-value example on GitHub](https://github.com/MFStapert/the_bin/tree/master/node/angular-control-retains-value).

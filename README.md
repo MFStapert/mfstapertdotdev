@@ -39,7 +39,7 @@ The site uses [Tailwind CSS](https://tailwindcss.com/) v4 through its Vite plugi
 
 - `@theme` holds the design tokens: the `primary`, `light-grey` and `dark-grey` colors, the `sans` font, and the `micro`, `small`, `medium` and `large` spacing steps. Use them as utilities, for example `text-primary` or `mb-large`.
 - `@layer base` sets element defaults on top of Preflight (body text, headings, paragraphs, links). These also cover HTML the templates do not write themselves, such as resume entries.
-- `prose-site` tunes [`@tailwindcss/typography`](https://github.com/tailwindlabs/tailwindcss-typography) for blog post bodies. Use it together with `prose`. Code blocks keep Shiki's inline `github-light` colors.
+- `prose-site` tunes [`@tailwindcss/typography`](https://github.com/tailwindlabs/tailwindcss-typography) for blog post bodies. Use it together with `prose`. Code blocks keep Shiki's inline `github-light-default` colors.
 
 ## Deploy
 

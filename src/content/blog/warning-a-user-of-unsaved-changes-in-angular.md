@@ -17,7 +17,7 @@ The use cases I wanted to solve were as follows:
 - A warning should be triggered on a reload or a navigation event
 
 My implementation consists of 3 pieces, a service that tracks the state of formcontrols, a directive that is used to register a new form and a guard that gets triggered on navigation event.
-Al code examples are abbreviated to be more legible, a working example can be found [here](https://github.com/mfstapert/playground/blob/master/node/angular-form-unload/src/app/form/has-form-changed.directive.ts)
+Al code examples are abbreviated to be more legible, a working example can be found in [the angular-form-unload example on GitHub](https://github.com/mfstapert/playground/blob/master/node/angular-form-unload/src/app/form/has-form-changed.directive.ts)
 
 ## HasFormChangedService
 
@@ -178,4 +178,4 @@ What I like about this solution is that it's easy to implement across multiple f
 I would like to have a solution for displaying the same type of warning to the user for both reloading as navigating.
 Also I'm pretty sure the HostListeners in the Directive can be moved to App.Component or a similair central point.
 
-Again source can be found [here](https://github.com/mfstapert/playground/tree/master/node/angular-form-unload)
+Again, the source is in [the angular-form-unload example on GitHub](https://github.com/mfstapert/playground/tree/master/node/angular-form-unload)

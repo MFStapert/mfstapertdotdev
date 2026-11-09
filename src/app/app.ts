@@ -9,15 +9,22 @@ import { filter, skip } from 'rxjs';
   imports: [RouterLink, RouterOutlet],
   preserveWhitespaces: true,
   template: `
+    <!-- Not sr-only: Font Awesome's unlayered .sr-only would override focus:not-sr-only. -->
+    <a
+      class="absolute top-medium left-medium -translate-y-[200%] bg-white px-medium py-small focus:translate-y-0"
+      href="#main"
+      >Skip to content</a
+    >
+
     <header>
       <div class="page-container">
-        <h1 class="flex-[1_1_50%] py-large">
+        <p class="mb-small flex-[1_1_50%] py-large text-h1">
           <a class="group hover:text-dark-grey hover:no-underline" routerLink="/"
             >{{ '{' }} <span class="text-primary group-hover:underline">mfstapert</span>;
             {{ '}' }}</a
           >
-        </h1>
-        <nav class="flex flex-[1_1_50%] flex-row-reverse">
+        </p>
+        <nav class="flex flex-[1_1_50%] flex-row-reverse" aria-label="Main">
           <ul class="mt-8.5">
             @for (link of navLinks; track link.path) {
               <li class="inline-block">
@@ -29,7 +36,7 @@ import { filter, skip } from 'rxjs';
       </div>
     </header>
 
-    <main class="border-y bg-light-grey p-large">
+    <main id="main" class="border-y bg-light-grey p-large" tabindex="-1">
       <div class="page-container">
         <router-outlet />
       </div>
@@ -41,11 +48,15 @@ import { filter, skip } from 'rxjs';
           <span class="text-primary">Want to get in touch? </span>Find me here:
         </h2>
         <div class="py-medium text-[1.875rem]/none *:pr-large">
-          <a href="https://github.com/MFStapert"><i class="fa fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/marijn-stapert-05091182/"
-            ><i class="fa fa-linkedin"></i
+          <a href="https://github.com/MFStapert" aria-label="GitHub"
+            ><i class="fa fa-github" aria-hidden="true"></i
           ></a>
-          <a href="https://twitter.com/MarijnStapert"><i class="fa fa-twitter"></i></a>
+          <a href="https://www.linkedin.com/in/marijn-stapert-05091182/" aria-label="LinkedIn"
+            ><i class="fa fa-linkedin" aria-hidden="true"></i
+          ></a>
+          <a href="https://twitter.com/MarijnStapert" aria-label="Twitter"
+            ><i class="fa fa-twitter" aria-hidden="true"></i
+          ></a>
         </div>
       </div>
     </footer>

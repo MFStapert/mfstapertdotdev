@@ -11,16 +11,18 @@ export const routeMeta: RouteMeta = {
 @Component({
   selector: 'resume',
   template: `
+    <h1 class="sr-only">Resume</h1>
+
     <section class="mb-large grid w-full grid-cols-[50%] gap-y-medium narrow:inline">
       <img
         class="col-start-1 row-span-2 box-content size-50 self-center rounded border narrow:hidden"
         src="/assets/imgs/mugshot.jpg"
-        alt="Marijn Stapert"
+        alt="Portrait of Marijn Stapert"
       />
 
       @for (block of personalia; track block.heading) {
         <div class="col-start-2 border-l pl-medium">
-          <h3 class="my-small underline">{{ block.heading }}:</h3>
+          <h2 class="my-small text-h3 underline">{{ block.heading }}:</h2>
           @for (row of block.rows; track row.label) {
             <p>
               {{ row.label }}: <span class="text-primary">{{ row.value }}</span>
@@ -31,17 +33,17 @@ export const routeMeta: RouteMeta = {
     </section>
 
     <section class="w-full">
-      <h1 class="mb-large">Work experience:</h1>
+      <h2 class="mb-large text-h1">Work experience:</h2>
 
       @for (job of jobs; track job.order) {
         <div class="mb-large border-l pl-medium">
           <div class="mb-medium">
-            <h2 class="text-primary">
+            <h3 class="text-h2 text-primary">
               {{ job.attributes.title }}
               @if (job.attributes.languages) {
                 <em> ({{ job.attributes.languages }})</em>
               }
-            </h2>
+            </h3>
             {{ job.attributes.period }}:
             <span class="text-primary">{{ job.attributes.employer }}</span>
           </div>

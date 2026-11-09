@@ -44,7 +44,7 @@ export default defineConfig(() => ({
         highlighter: 'shiki',
         shikiOptions: {
           highlight: {
-            theme: 'github-light',
+            theme: 'github-light-default',
           },
           highlighter: {
             additionalLangs: ['typescript', 'plaintext'],

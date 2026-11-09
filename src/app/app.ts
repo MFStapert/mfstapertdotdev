@@ -54,9 +54,7 @@ import { filter, skip } from 'rxjs';
           <a href="https://www.linkedin.com/in/marijn-stapert-05091182/" aria-label="LinkedIn"
             ><i class="fa fa-linkedin" aria-hidden="true"></i
           ></a>
-          <a href="https://twitter.com/MarijnStapert" aria-label="Twitter"
-            ><i class="fa fa-twitter" aria-hidden="true"></i
-          ></a>
+          <a href="/rss.xml" aria-label="RSS feed"><i class="fa fa-rss" aria-hidden="true"></i></a>
         </div>
       </div>
     </footer>

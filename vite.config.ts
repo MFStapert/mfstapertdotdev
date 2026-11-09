@@ -60,6 +60,7 @@ export default defineConfig(() => ({
           '/resume',
           '/blog',
           '/404.html',
+          '/rss.xml',
           {
             contentDir: 'src/content/blog',
             transform: (file: { attributes: PostAttributes; name: string }) =>

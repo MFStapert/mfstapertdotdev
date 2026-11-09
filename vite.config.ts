@@ -1,11 +1,10 @@
 /// <reference types="vitest" />
-
 import analog from '@analogjs/platform';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, type Plugin } from 'vite';
 
 import type PostAttributes from './src/lib/post-attributes.ts';
-import { contentSlug, sitemapLastmod } from './src/lib/post-path.ts';
+import { contentSlug, sitemapLastmod } from './src/lib/post-path';
 
 // Analog registers every src/content markdown file as a route. Resume entries
 // are content for /resume, and posts are rendered by pages/blog/[slug]. Keep

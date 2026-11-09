@@ -8,7 +8,7 @@ export const routeMeta: RouteMeta = {
 };
 
 @Component({
-  selector: 'app-home',
+  selector: 'home',
   template: `
     <h1 class="hero-title">
       Hi, I’m Marijn Stapert, a <span class="color-primary">software engineer</span> living in the

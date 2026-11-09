@@ -14,7 +14,7 @@ function slugFromUrl(url: string): string | null {
 }
 
 @Component({
-  selector: 'app-blog-layout',
+  selector: 'blog-layout',
   imports: [RouterOutlet],
   template: `
     @if (post(); as post) {

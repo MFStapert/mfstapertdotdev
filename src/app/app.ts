@@ -5,7 +5,7 @@ import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router
 import { filter, skip } from 'rxjs';
 
 @Component({
-  selector: 'app-root',
+  selector: 'root',
   imports: [RouterLink, RouterOutlet],
   // Keep the spaces between inline nav items and footer icons, matching the Jekyll HTML.
   preserveWhitespaces: true,

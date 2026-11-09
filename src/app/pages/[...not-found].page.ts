@@ -8,7 +8,7 @@ export const routeMeta: RouteMeta = {
 };
 
 @Component({
-  selector: 'app-not-found',
+  selector: 'not-found',
   template: `
     <h1 class="hero-title">
       <span class="color-primary"> &lt; </span>404<span class="color-primary">/&gt;</span>

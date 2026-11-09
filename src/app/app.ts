@@ -11,20 +11,20 @@ import { filter, skip } from 'rxjs';
   template: `
     <!-- Not sr-only: Font Awesome's .sr-only sets clip, which focus:not-sr-only doesn't reset. -->
     <a
-      class="absolute top-medium left-medium -translate-y-[200%] bg-white px-medium py-small focus:translate-y-0"
+      class="absolute top-medium left-medium -translate-y-[200%] bg-white px-medium py-small focus:translate-y-0 print:hidden"
       href="#main"
       >Skip to content</a
     >
 
     <header>
       <div class="page-container">
-        <p class="mb-small flex-[1_1_50%] py-large text-h1">
+        <p class="mb-small flex-[1_1_50%] py-large text-h1 print:pt-0">
           <a class="group hover:text-dark-grey hover:no-underline" routerLink="/"
             >{{ '{' }} <span class="text-primary group-hover:underline">mfstapert</span>;
             {{ '}' }}</a
           >
         </p>
-        <nav class="flex flex-[1_1_50%] flex-row-reverse" aria-label="Main">
+        <nav class="flex flex-[1_1_50%] flex-row-reverse print:hidden" aria-label="Main">
           <ul class="mt-8.5">
             @for (link of navLinks; track link.path) {
               <li class="inline-block">
@@ -42,13 +42,17 @@ import { filter, skip } from 'rxjs';
       </div>
     </header>
 
-    <main id="main" class="border-y bg-light-grey p-large" tabindex="-1">
+    <main
+      id="main"
+      class="border-y bg-light-grey p-large print:border-0 print:bg-white print:p-0"
+      tabindex="-1"
+    >
       <div class="page-container">
         <router-outlet />
       </div>
     </main>
 
-    <footer class="p-large">
+    <footer class="p-large print:hidden">
       <div class="page-container">
         <h2 class="w-full">
           <span class="text-primary">Want to get in touch? </span>Find me here:

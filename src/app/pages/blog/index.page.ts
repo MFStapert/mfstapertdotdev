@@ -12,7 +12,7 @@ export const routeMeta: RouteMeta = {
 };
 
 @Component({
-  selector: 'app-blog',
+  selector: 'blog',
   imports: [RouterLink],
   template: `
     <h1><span class="color-primary">#</span>Blog</h1>

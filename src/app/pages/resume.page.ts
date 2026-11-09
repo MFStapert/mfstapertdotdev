@@ -9,7 +9,7 @@ export const routeMeta: RouteMeta = {
 };
 
 @Component({
-  selector: 'app-resume',
+  selector: 'resume',
   template: `
     <section class="resume-section resume-personalia">
       <img src="/assets/imgs/mugshot.jpg" alt="Marijn Stapert" />

@@ -29,11 +29,6 @@ function cdata(value: string): string {
   return `<![CDATA[${value.replaceAll(']]>', ']]]]><![CDATA[>')}]]>`;
 }
 
-/** Drops the `[topic]` prefix, see #36. */
-export function feedTitle(displayTitle: string): string {
-  return displayTitle.replace(/^\[[^\]]*\]\s*/, '');
-}
-
 /** First paragraph of the post as plain text. */
 export function feedSummary(markdown: string): string {
   const paragraph = markdown
@@ -61,7 +56,7 @@ export function buildRss(posts: FeedPost[]): string {
     const link = `${SITE_URL}/blog/${contentSlug(post.attributes.slug, post.filename)}`;
 
     return `    <item>
-      <title>${escapeXml(feedTitle(post.attributes.displayTitle))}</title>
+      <title>${escapeXml(post.attributes.displayTitle)}</title>
       <link>${link}</link>
       <guid isPermaLink="true">${link}</guid>
       <pubDate>${rfc822(post.date)}</pubDate>

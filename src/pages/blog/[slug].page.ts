@@ -28,6 +28,11 @@ export const routeMeta: RouteMeta = {
     @if (post(); as post) {
       <article class="inline-block">
         <h1>{{ post.attributes.displayTitle }}</h1>
+        <ul class="mb-small flex list-none flex-wrap gap-small" aria-label="Tags">
+          @for (tag of post.attributes.tags; track tag) {
+            <li class="rounded-full border bg-white px-small py-micro text-sm">{{ tag }}</li>
+          }
+        </ul>
         <p class="mb-large text-h3 text-primary">
           Published: {{ label(post.attributes.published) }}
         </p>

@@ -1,8 +1,10 @@
 ---
-title: 'mfstapert.[node] testcontainers with github actions'
+title: 'mfstapert.testcontainers with github actions'
 slug: testcontainers-with-github-actions
 published: '2024-08-20'
-displayTitle: '[node] Testcontainers with github actions'
+displayTitle: 'Testcontainers with github actions'
+tags:
+  - node
 ---
 
 I tried running testcontainers on github actions, the trick to running them was increasing the default timeout for your tests.

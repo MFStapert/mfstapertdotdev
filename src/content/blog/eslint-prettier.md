@@ -1,8 +1,10 @@
 ---
-title: 'mfstapert.[angular] minimal eslint and prettier setup'
+title: 'mfstapert.minimal eslint and prettier setup'
 slug: eslint-prettier
 published: '2024-05-14'
-displayTitle: '[angular] Minimal ESLint and prettier setup'
+displayTitle: 'Minimal ESLint and prettier setup'
+tags:
+  - angular
 ---
 
 Recently I had the assignment to set up prettier and ESLint for new projects at my company.

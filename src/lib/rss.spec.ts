@@ -1,18 +1,9 @@
-import { buildRss, feedSummary, feedTitle, type FeedPost } from './rss';
+import { buildRss, feedSummary, type FeedPost } from './rss';
 
 const post = (published: string, displayTitle: string, body: string, slug?: string): FeedPost => ({
-  attributes: { title: '', slug: slug ?? '', published, displayTitle },
+  attributes: { title: '', slug: slug ?? '', published, displayTitle, tags: [] },
   filename: displayTitle.toLowerCase().replace(/\W+/g, '-'),
   body,
-});
-
-describe('feedTitle', () => {
-  it('drops the [topic] prefix', () => {
-    expect(feedTitle('[angular] Minimal ESLint & prettier setup')).toBe(
-      'Minimal ESLint & prettier setup',
-    );
-    expect(feedTitle('No prefix')).toBe('No prefix');
-  });
 });
 
 describe('feedSummary', () => {
@@ -25,10 +16,10 @@ describe('feedSummary', () => {
 
 describe('buildRss', () => {
   const xml = buildRss([
-    post('2021-12-29', '[angular] Older', 'Old post.', 'older'),
+    post('2021-12-29', 'Older', 'Old post.', 'older'),
     post(
       '2024-08-20',
-      '[node] Newer & better',
+      'Newer & better',
       'New post with `code`.\n\n```ts\nconst a = 1;\n```',
       'newer',
     ),

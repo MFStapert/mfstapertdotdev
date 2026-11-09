@@ -1,8 +1,10 @@
 ---
-title: 'mfstapert.[node] why i no longer use npx in ci'
+title: 'mfstapert.why i no longer use npx in ci'
 slug: why-i-no-longer-use-npx
 published: '2024-04-02'
-displayTitle: '[node] Why I no longer use npx in CI'
+displayTitle: 'Why I no longer use npx in CI'
+tags:
+  - node
 ---
 
 I always prefixed "scripts" in the `scripts` property of my `package.json` with `npx`.

@@ -1,8 +1,10 @@
 ---
-title: 'mfstapert.[angular] fix for custom angular formcontrol retaining input value after form reset'
+title: 'mfstapert.fix for custom angular formcontrol retaining input value after form reset'
 slug: bugfix-for-angular-retaining-input-value
 published: '2024-03-13'
-displayTitle: '[angular] Fix for custom angular formcontrol retaining input value after form reset'
+displayTitle: 'Fix for custom angular formcontrol retaining input value after form reset'
+tags:
+  - angular
 ---
 
 I came across a behavior in Angular where a custom formcontrol (using `ControlValueAccessor`) retained its value in the UI after being reset.

@@ -28,15 +28,20 @@ updates:
       - dependency-name: '@analogjs/*'
         update-types:
           - version-update:semver-major
+      - dependency-name: typescript
+        update-types:
+          - version-update:semver-minor
+          - version-update:semver-major
 
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
     groups:
-      minor-and-patch:
+      all:
         patterns:
           - '*'
         update-types:
+          - major
           - minor
           - patch

@@ -1,13 +1,12 @@
 {
-  "name": "mfstapert",
+  "name": "mfstapert.dev",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "ng": "ng",
     "dev": "vite",
-    "start": "vite",
-    "build": "vite build && node scripts/prune-sitemap.mjs",
+    "build": "vite build",
     "watch": "vite build --watch",
     "test": "vitest run",
     "preview": "vite preview --outDir dist/analog/public",

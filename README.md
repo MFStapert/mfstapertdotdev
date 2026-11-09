@@ -41,8 +41,6 @@ The site uses [Tailwind CSS](https://tailwindcss.com/) v4 through its Vite plugi
 - `@layer base` sets element defaults on top of Preflight (body text, headings, paragraphs, links). These also cover HTML the templates do not write themselves, such as resume entries.
 - `prose-site` tunes [`@tailwindcss/typography`](https://github.com/tailwindlabs/tailwindcss-typography) for blog post bodies. Use it together with `prose`. Code blocks keep Shiki's inline `github-light` colors.
 
-Everything else is utility classes in the component templates. Components have no stylesheets of their own.
-
 ## Deploy
 
 Pushes to `main` run [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). It calls [`.github/workflows/ci.yml`](.github/workflows/ci.yml), which installs dependencies, runs the tests and the build, and uploads `dist/analog/public` as the Pages artifact. The `deploy` job publishes that artifact. Pull requests run the `checks` job in `ci.yml` only.

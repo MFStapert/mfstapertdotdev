@@ -32,6 +32,6 @@ npm run preview
 
 ## Deploy
 
-Pushes to `main` run [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The workflow installs dependencies, runs the tests and the build, and deploys `dist/analog/public` with GitHub's Pages actions.
+Pushes to `main` run [`.github/workflows/ci.yml`](.github/workflows/ci.yml). The `checks` job installs dependencies, runs the tests and the build, and uploads `dist/analog/public` as the Pages artifact. The `deploy` job publishes that artifact. Pull requests run `checks` only.
 
 `public/CNAME` (`mfstapert.dev`) is copied into that artifact so the custom domain stays attached. Posts are `/blog/<slug>`. The old dated Jekyll URLs are not redirected.

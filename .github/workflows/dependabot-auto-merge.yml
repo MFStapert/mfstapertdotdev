@@ -1,24 +1,58 @@
 name: Dependabot auto-merge
 
-# Dependabot pull_request runs get a read-only token, so this uses
-# pull_request_target and never checks out the pull request.
-on: pull_request_target
+# Merges Dependabot patch and minor updates once CI passes, then deploys.
+# workflow_run keeps this off the pull request checks, so other pull requests
+# don't list it as skipped. It never checks out the pull request's code.
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches:
+      - 'dependabot/**'
 
 permissions:
   contents: write
   pull-requests: write
+  # Merges with GITHUB_TOKEN don't trigger deploy.yml, so dispatch it.
+  actions: write
 
 jobs:
   auto-merge:
-    if: github.event.pull_request.user.login == 'dependabot[bot]' && github.repository == 'MFStapert/mfstapertdotdev'
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.actor.login == 'dependabot[bot]' &&
+      github.event.workflow_run.pull_requests[0]
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      PR: ${{ github.event.workflow_run.pull_requests[0].number }}
+      SHA: ${{ github.event.workflow_run.head_sha }}
     steps:
-      - name: Dependabot metadata
-        id: metadata
-        uses: dependabot/fetch-metadata@v3
-      - name: Enable auto-merge for patch and minor updates
-        if: steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor'
-        run: gh pr merge --auto --squash "$PR_URL"
-        env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
-          GH_TOKEN: ${{ github.token }}
+      - name: Merge patch and minor updates
+        id: merge
+        run: |
+          # A commit pushed on top of Dependabot's is not trusted.
+          author=$(gh api "repos/$GH_REPO/commits/$SHA" --jq '.author.login')
+          if [ "$author" != 'dependabot[bot]' ]; then
+            echo "Head commit is by $author, not Dependabot. Leaving it for review."
+            exit 0
+          fi
+
+          # Dependabot's commit message lists the update-type of every bumped
+          # dependency. This is what dependabot/fetch-metadata reads.
+          types=$(gh api "repos/$GH_REPO/commits/$SHA" --jq '.commit.message' |
+            sed -n 's/^ *update-type: *//p' | sort -u)
+          echo "Update types: ${types:-none}"
+          if [ -z "$types" ] || grep -qv -e semver-patch -e semver-minor <<<"$types"; then
+            echo 'Major or unknown update. Leaving it for review.'
+            exit 0
+          fi
+
+          gh pr merge "$PR" --squash --match-head-commit "$SHA"
+          echo 'merged=true' >>"$GITHUB_OUTPUT"
+
+      - name: Deploy
+        if: steps.merge.outputs.merged == 'true'
+        run: gh workflow run deploy.yml --ref main

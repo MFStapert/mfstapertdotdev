@@ -1,7 +1,7 @@
 import { RouteMeta } from '@analogjs/router';
 import { Component } from '@angular/core';
 
-import { mfstapertTitle } from '../title';
+import { mfstapertTitle } from '../lib/title';
 
 export const routeMeta: RouteMeta = {
   title: mfstapertTitle(),

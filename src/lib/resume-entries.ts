@@ -29,7 +29,7 @@ export function renderResumeBody(markdown: string): string {
     .join('');
 }
 
-const files = import.meta.glob<string>('../data/resume/*.md', {
+const files = import.meta.glob<string>('../content/resume/*.md', {
   query: '?raw',
   import: 'default',
   eager: true,

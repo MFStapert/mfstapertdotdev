@@ -25,9 +25,11 @@ npm run preview
 
 ## Project layout
 
-- `src/app/pages` — routes (`/`, `/blog`, `/resume`, and the 404)
+- `src/app` — app bootstrap
+- `src/pages` — routes (`/`, `/blog`, `/blog/<slug>`, `/resume`, and the 404)
 - `src/content/blog` — posts, served at `/blog/<slug>`
-- `src/data/resume` — resume entries rendered on `/resume`
+- `src/content/resume` — resume entries rendered on `/resume`
+- `src/lib` — shared logic
 - `public/` — files copied into the build as-is, including `CNAME`
 
 ## Deploy

@@ -1,10 +1,30 @@
 /// <reference types="vitest" />
 
 import analog from '@analogjs/platform';
-import { defineConfig } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
 
-import type PostAttributes from './src/app/post-attributes.ts';
-import { contentSlug, sitemapLastmod } from './src/app/post-path.ts';
+import type PostAttributes from './src/lib/post-attributes.ts';
+import { contentSlug, sitemapLastmod } from './src/lib/post-path.ts';
+
+// Analog registers every src/content markdown file as a route. Resume entries
+// are content for /resume, and posts are rendered by pages/blog/[slug]. Keep
+// the files available to injectContent, but do not route them.
+function contentIsNotARoute(): Plugin {
+  const spread = '...ANALOG_CONTENT_ROUTE_FILES';
+  const filtered =
+    "...Object.fromEntries(Object.entries(ANALOG_CONTENT_ROUTE_FILES).filter(([key]) => !key.includes('/content/')))";
+
+  return {
+    name: 'content-is-not-a-route',
+    transform(code) {
+      if (!code.includes(spread) || !code.includes('function createRoutes')) {
+        return;
+      }
+
+      return code.replaceAll(spread, filtered);
+    },
+  };
+}
 
 // https://vitejs.dev/config/
 export default defineConfig(() => ({
@@ -25,6 +45,7 @@ export default defineConfig(() => ({
     analog({
       static: true,
       ssr: true,
+      additionalPagesDirs: ['/src'],
       content: {
         highlighter: 'shiki',
         shikiOptions: {
@@ -64,6 +85,7 @@ export default defineConfig(() => ({
         },
       },
     }),
+    contentIsNotARoute(),
   ],
   test: {
     globals: true,

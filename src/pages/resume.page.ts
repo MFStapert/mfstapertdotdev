@@ -1,8 +1,8 @@
 import { RouteMeta } from '@analogjs/router';
 import { Component } from '@angular/core';
 
-import { loadResume } from '../resume-entries';
-import { mfstapertTitle } from '../title';
+import { loadResume } from '../lib/resume-entries';
+import { mfstapertTitle } from '../lib/title';
 
 export const routeMeta: RouteMeta = {
   title: mfstapertTitle('resume'),

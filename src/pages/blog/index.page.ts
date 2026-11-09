@@ -3,9 +3,9 @@ import { RouteMeta } from '@analogjs/router';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import PostAttributes from '../../post-attributes';
-import { contentSlug, publishedLabel } from '../../post-path';
-import { mfstapertTitle } from '../../title';
+import PostAttributes from '../../lib/post-attributes';
+import { contentSlug, publishedLabel } from '../../lib/post-path';
+import { mfstapertTitle } from '../../lib/title';
 
 export const routeMeta: RouteMeta = {
   title: mfstapertTitle('blog'),

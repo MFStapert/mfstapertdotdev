@@ -1,10 +1,8 @@
 {
   "name": "mfstapert",
   "version": "0.0.0",
+  "private": true,
   "type": "module",
-  "engines": {
-    "node": ">=26"
-  },
   "scripts": {
     "ng": "ng",
     "dev": "vite",
@@ -12,9 +10,12 @@
     "build": "vite build && node scripts/prune-sitemap.mjs",
     "watch": "vite build --watch",
     "test": "vitest run",
-    "preview": "vite preview --outDir dist/analog/public"
+    "preview": "vite preview --outDir dist/analog/public",
+    "lint": "eslint .",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "prepare": "husky"
   },
-  "private": true,
   "dependencies": {
     "@analogjs/content": "^2.9.6",
     "@analogjs/router": "^2.9.6",
@@ -40,10 +41,27 @@
     "@angular/build": "^22.0.0",
     "@angular/cli": "^22.0.0",
     "@angular/compiler-cli": "^22.0.0",
+    "@eslint/js": "^10.0.1",
+    "angular-eslint": "^22.6.0",
+    "eslint": "^10.14.0",
+    "husky": "^9.1.7",
     "jsdom": "^22.0.0",
+    "lint-staged": "^17.6.0",
+    "oxfmt": "^0.78.0",
     "sass": "^1.108.0",
     "typescript": "~6.0.0",
+    "typescript-eslint": "^8.72.1",
     "vite": "^8.0.0",
     "vitest": "^5.0.0"
+  },
+  "lint-staged": {
+    "*.{js,mjs,cjs,ts}": [
+      "eslint --fix",
+      "oxfmt"
+    ],
+    "*.{html,json,jsonc,yml,yaml,md,scss,css}": "oxfmt"
+  },
+  "engines": {
+    "node": ">=26"
   }
 }

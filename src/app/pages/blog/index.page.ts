@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { injectContentFiles } from '@analogjs/content';
 import { RouteMeta } from '@analogjs/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import PostAttributes from '../../post-attributes';
 import { contentSlug, publishedLabel } from '../../post-path';
@@ -13,6 +13,7 @@ export const routeMeta: RouteMeta = {
 
 @Component({
   selector: 'blog',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink],
   template: `
     <h1><span class="color-primary">#</span>Blog</h1>
@@ -27,8 +28,10 @@ export const routeMeta: RouteMeta = {
   `,
 })
 export default class BlogPage {
-  readonly posts = injectContentFiles<PostAttributes>((file) => file.filename.includes('/content/blog/')).sort(
-    (a, b) => publishedLabel(b.attributes.published).localeCompare(publishedLabel(a.attributes.published)),
+  readonly posts = injectContentFiles<PostAttributes>((file) =>
+    file.filename.includes('/content/blog/'),
+  ).sort((a, b) =>
+    publishedLabel(b.attributes.published).localeCompare(publishedLabel(a.attributes.published)),
   );
 
   slug(post: { attributes: PostAttributes; slug: string }): string {

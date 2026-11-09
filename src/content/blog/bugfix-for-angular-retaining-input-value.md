@@ -1,9 +1,10 @@
 ---
-title: "mfstapert.[angular] fix for custom angular formcontrol retaining input value after form reset"
+title: 'mfstapert.[angular] fix for custom angular formcontrol retaining input value after form reset'
 slug: bugfix-for-angular-retaining-input-value
-published: "2024-03-13"
-displayTitle: "[angular] Fix for custom angular formcontrol retaining input value after form reset"
+published: '2024-03-13'
+displayTitle: '[angular] Fix for custom angular formcontrol retaining input value after form reset'
 ---
+
 I came across a behavior in Angular where a custom formcontrol (using `ControlValueAccessor`) retained its value in the UI after being reset.
 Credit to this [stackoverflow question](https://stackoverflow.com/questions/76389471/angular-retaining-input-value-after-form-reset), which helped me fix this issue.
 My post gives a concise description, fix and explanation for this behavior.
@@ -25,6 +26,7 @@ My post gives a concise description, fix and explanation for this behavior.
 })
 export class InputRetainsComponent implements ControlValueAccessor
 ```
+
 A component that implements `ControlValueAccessor` implements a couple of methods to interact with the Angular forms API.
 
 ```typescript
@@ -66,7 +68,7 @@ The solution is to write the value directly to the view, you don't need to keep 
 
 An answer is actually in the comments of the `ControlValueAccessor` interface.
 
-```typescript
+````typescript
 @usageNotes
 ### Write a value to the element
 
@@ -76,7 +78,7 @@ The following example writes a value to the native DOM element.
 writeValue(value: any): void {
   this._renderer.setProperty(this._elementRef.nativeElement, 'value', value);
 }
-```
+````
 
 Though it may appear strange at first, writing directly to the DOM is actually encouraged.
 Maybe custom form controls are excluded from normal change detection

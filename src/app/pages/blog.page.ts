@@ -1,7 +1,7 @@
-import { Component, computed, inject } from '@angular/core';
+import { injectContentFiles } from '@analogjs/content';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { injectContentFiles } from '@analogjs/content';
 import { filter, map, startWith } from 'rxjs';
 
 import PostAttributes from '../post-attributes';
@@ -15,6 +15,7 @@ function slugFromUrl(url: string): string | null {
 
 @Component({
   selector: 'blog-layout',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterOutlet],
   template: `
     @if (post(); as post) {

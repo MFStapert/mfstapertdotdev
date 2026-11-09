@@ -9,7 +9,11 @@ export function publishedLabel(value: unknown): string {
     return value.toISOString().slice(0, 10);
   }
 
-  const text = String(value ?? '');
+  if (typeof value !== 'string' && typeof value !== 'number' && typeof value !== 'boolean') {
+    return '';
+  }
+
+  const text = String(value);
   return /^\d{4}-\d{2}-\d{2}/.test(text) ? text.slice(0, 10) : text;
 }
 

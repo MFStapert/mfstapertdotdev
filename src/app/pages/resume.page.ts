@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
 import { RouteMeta } from '@analogjs/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { loadResume } from '../resume-entries';
 import { mfstapertTitle } from '../title';
@@ -10,6 +10,7 @@ export const routeMeta: RouteMeta = {
 
 @Component({
   selector: 'resume',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="resume-section resume-personalia">
       <img src="/assets/imgs/mugshot.jpg" alt="Marijn Stapert" />

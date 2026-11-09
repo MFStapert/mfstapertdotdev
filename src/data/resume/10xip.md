@@ -10,4 +10,5 @@ technology:
   - Lit
   - Docker
 ---
+
 XIP is a software agency that works in edtech and manufacturing, I'm working for our customer thieme Meulenhof.

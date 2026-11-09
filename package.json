@@ -42,13 +42,15 @@
     "@angular/cli": "^22.0.0",
     "@angular/compiler-cli": "^22.0.0",
     "@eslint/js": "^10.0.1",
+    "@tailwindcss/typography": "^0.5.20",
+    "@tailwindcss/vite": "^4.3.5",
     "angular-eslint": "^22.6.0",
     "eslint": "^10.14.0",
     "husky": "^9.1.7",
     "jsdom": "^22.0.0",
     "lint-staged": "^17.6.0",
     "oxfmt": "^0.78.0",
-    "sass": "^1.108.0",
+    "tailwindcss": "^4.3.5",
     "typescript": "~6.0.0",
     "typescript-eslint": "^8.72.1",
     "vite": "^8.0.0",
@@ -59,7 +61,7 @@
       "eslint --fix",
       "oxfmt"
     ],
-    "*.{html,json,jsonc,yml,yaml,md,scss,css}": "oxfmt"
+    "*.{html,json,jsonc,yml,yaml,md,css}": "oxfmt"
   },
   "engines": {
     "node": ">=26"

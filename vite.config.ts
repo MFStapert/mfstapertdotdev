@@ -1,6 +1,7 @@
 /// <reference types="vitest" />
 
 import analog from '@analogjs/platform';
+import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, type Plugin } from 'vite';
 
 import type PostAttributes from './src/lib/post-attributes.ts';
@@ -28,13 +29,6 @@ function contentIsNotARoute(): Plugin {
 
 // https://vitejs.dev/config/
 export default defineConfig(() => ({
-  css: {
-    preprocessorOptions: {
-      scss: {
-        silenceDeprecations: ['import'],
-      },
-    },
-  },
   build: {
     target: ['es2020'],
   },
@@ -42,6 +36,7 @@ export default defineConfig(() => ({
     mainFields: ['module'],
   },
   plugins: [
+    tailwindcss(),
     analog({
       static: true,
       ssr: true,

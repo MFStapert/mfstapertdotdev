@@ -15,13 +15,16 @@ export const routeMeta: RouteMeta = {
   selector: 'blog',
   imports: [RouterLink],
   template: `
-    <h1><span class="color-primary">#</span>Blog</h1>
+    <h1><span class="text-primary">#</span>Blog</h1>
     @for (post of posts; track post.slug) {
-      <div class="blog-item">
-        <a [routerLink]="['/blog', slug(post)]">
+      <div class="mt-large w-full">
+        <a
+          class="inline-block border-l pl-medium hover:text-dark-grey"
+          [routerLink]="['/blog', slug(post)]"
+        >
           <h1>{{ post.attributes.displayTitle }}</h1>
         </a>
-        <h3 class="color-primary">Published: {{ label(post.attributes.published) }}</h3>
+        <h3 class="pl-medium text-primary">Published: {{ label(post.attributes.published) }}</h3>
       </div>
     }
   `,

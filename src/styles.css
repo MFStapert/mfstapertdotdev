@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,900');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/typography';
+
+/* The site's design tokens. Each becomes a utility, e.g. text-primary, bg-light-grey, p-large. */
+@theme {
+  --font-sans: 'Source Sans Pro', arial, sans-serif;
+
+  --color-primary: #0094c6;
+  --color-light-grey: #fbfbfb;
+  --color-dark-grey: #565554;
+
+  --spacing-micro: 0.25rem;
+  --spacing-small: 0.5rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 2rem;
+
+  /* Heading sizes, shared by the element defaults and blog post bodies. */
+  --text-h1: 2.4em;
+  --text-h1--line-height: 1;
+  --text-h2: 1.375rem;
+  --text-h2--line-height: 1.4;
+  --text-h3: 1.25rem;
+  --text-h3--line-height: 1.2;
+}
+
+/* The page-width wrapper inside the header, main and footer. */
+@utility page-container {
+  @apply mx-auto flex w-9/10 max-w-350 flex-wrap;
+}
+
+/* The resume collapses to one column at 600px and below. */
+@custom-variant narrow (@media (max-width: 600px));
+
+/*
+ * Element defaults on top of Preflight. These also style HTML the templates do not
+ * write themselves, like resume entries.
+ */
+@layer base {
+  html {
+    tab-size: 8;
+  }
+
+  /* Every border on the site is dark grey. Preflight defaults to currentColor. */
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-dark-grey);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-dark-grey);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1;
+    overflow: scroll;
+  }
+
+  ::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+  }
+
+  :focus {
+    outline: 0;
+  }
+
+  a:focus {
+    outline: thin dotted;
+  }
+
+  a:active,
+  a:hover {
+    outline: 0;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 600;
+  }
+
+  h1 {
+    margin-bottom: var(--spacing-small);
+    font-size: var(--text-h1);
+    line-height: var(--text-h1--line-height);
+  }
+
+  h2 {
+    font-size: var(--text-h2);
+    line-height: var(--text-h2--line-height);
+  }
+
+  h3 {
+    font-size: var(--text-h3);
+    line-height: var(--text-h3--line-height);
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  ul {
+    list-style: disc inside;
+  }
+
+  em {
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  strong {
+    font-weight: 900;
+  }
+
+  a {
+    color: var(--color-dark-grey);
+    text-decoration: none;
+    transition: color 0.25s ease;
+
+    &:hover {
+      color: var(--color-primary);
+      text-decoration: underline;
+    }
+  }
+
+  /* The routed page is a component host. Its children are the flex items of the page container. */
+  router-outlet {
+    display: none;
+  }
+
+  router-outlet + * {
+    display: contents;
+  }
+}
+
+/* Blog post bodies: the typography plugin, tuned to the site's look. Use as `prose prose-site`. */
+@utility prose-site {
+  /* `.prose` sets these too and comes later, so match it with higher specificity. */
+  &.prose {
+    --tw-prose-body: var(--color-dark-grey);
+    --tw-prose-headings: var(--color-dark-grey);
+    --tw-prose-links: var(--color-primary);
+    --tw-prose-bold: var(--color-dark-grey);
+    --tw-prose-bullets: var(--color-dark-grey);
+
+    max-width: none;
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  & h1,
+  & h2,
+  & h3 {
+    font-weight: 600;
+  }
+
+  & h1 {
+    margin: 0 0 var(--spacing-small);
+    font-size: var(--text-h1);
+    line-height: var(--text-h1--line-height);
+  }
+
+  & h2 {
+    margin: var(--spacing-large) 0 var(--spacing-medium);
+    color: var(--color-primary);
+    font-size: var(--text-h2);
+    line-height: var(--text-h2--line-height);
+  }
+
+  & h3 {
+    margin: 0 0 var(--spacing-large);
+    font-size: var(--text-h3);
+    line-height: var(--text-h3--line-height);
+  }
+
+  & p,
+  & ul {
+    width: 75%;
+    margin: 0 0 var(--spacing-medium);
+    font-size: 1.25rem;
+  }
+
+  & ul {
+    padding: 0;
+  }
+
+  & li {
+    margin: 0;
+    padding: 0;
+  }
+
+  & a {
+    font-weight: inherit;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  & strong {
+    font-weight: 900;
+  }
+
+  & code {
+    font-family: inherit;
+    font-weight: 600;
+    border-radius: 0.1875rem;
+
+    &::before,
+    &::after {
+      content: none;
+    }
+  }
+
+  & :not(pre) > code {
+    display: inline-block;
+    padding: var(--spacing-micro);
+    background-color: var(--color-dark-grey);
+    color: white;
+    font-size: 1rem;
+  }
+
+  /* Shiki sets the background and text colors inline. */
+  & pre {
+    overflow-x: visible;
+    margin: 0 0 var(--spacing-medium);
+    padding: var(--spacing-medium);
+    border-radius: 0.1875rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  & pre code {
+    display: block;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    white-space: pre;
+  }
+}

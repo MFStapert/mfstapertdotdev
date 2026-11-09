@@ -1,9 +1,10 @@
 ---
-title: "mfstapert.[node] testcontainers with github actions"
+title: 'mfstapert.[node] testcontainers with github actions'
 slug: testcontainers-with-github-actions
-published: "2024-08-20"
-displayTitle: "[node] Testcontainers with github actions"
+published: '2024-08-20'
+displayTitle: '[node] Testcontainers with github actions'
 ---
+
 I tried running testcontainers on github actions, the trick to running them was increasing the default timeout for your tests.
 Github has out of the box support for docker, there is a delay with startup though, so you need to account for that.
 I thought this was a hack, but the official testcontainers repo uses this approach as well.
@@ -27,13 +28,14 @@ It adds a lot of reliability since the dependencies are very close to the real d
 Here's an example test using nestjs with drizzle as an ORM:
 
 ```typescript
-import request from 'supertest';
 import { runMigrations } from '@db/migrate';
 import { schema } from '@db/schema';
 import { DrizzlePostgresModule } from '@knaadh/nestjs-drizzle-postgres';
 import { INestApplication } from '@nestjs/common';
 import { PostgreSqlContainer } from '@testcontainers/postgresql';
 import { StartedPostgreSqlContainer } from '@testcontainers/postgresql/build/postgresql-container';
+import request from 'supertest';
+
 import { UserModule } from '../src/user/user.module';
 
 describe('users e2e', () => {
@@ -42,30 +44,30 @@ describe('users e2e', () => {
 
   beforeAll(async () => {
     postgresContainer = await new PostgreSqlContainer().start();
-    
+
     // add DATABASE_URL to env so we can use it for our migrations
     process.env.DATABASE_URL = postgresContainer.getConnectionUri();
 
     const moduleFixture = await Test.createTestingModule({
       imports: [
-          DrizzlePostgresModule.registerAsync({
-              tag: 'DB',
-              useFactory() {
-                  return {
-                      postgres: {
-                          url: postgresContainer.getConnectionUri(),
-                      },
-                      config: { schema },
-                  };
+        DrizzlePostgresModule.registerAsync({
+          tag: 'DB',
+          useFactory() {
+            return {
+              postgres: {
+                url: postgresContainer.getConnectionUri(),
               },
-          }),
-          UserModule
+              config: { schema },
+            };
+          },
+        }),
+        UserModule,
       ],
     }).compile();
-    
-    // this also runs a seed method for testdata in non dev environments  
+
+    // this also runs a seed method for testdata in non dev environments
     await runMigrations();
-    
+
     app = moduleFixture.createNestApplication();
     await app.init();
   });
@@ -76,13 +78,11 @@ describe('users e2e', () => {
   });
 
   it('Get users', () => {
-    // Run actual http request against server with postgres database 
+    // Run actual http request against server with postgres database
     return request(app.getHttpServer())
       .get('/users')
       .expect(200)
-      .expect([
-        { id: 1, name: 'Marijn' },
-      ]);
+      .expect([{ id: 1, name: 'Marijn' }]);
   });
 });
 ```

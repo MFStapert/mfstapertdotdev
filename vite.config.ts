@@ -1,7 +1,7 @@
 /// <reference types="vitest" />
 
-import { defineConfig } from 'vite';
 import analog from '@analogjs/platform';
+import { defineConfig } from 'vite';
 
 import type PostAttributes from './src/app/post-attributes.ts';
 import { contentSlug, sitemapLastmod } from './src/app/post-path.ts';
@@ -40,7 +40,7 @@ export default defineConfig(() => ({
         sitemap: {
           host: 'https://mfstapert.dev',
         },
-        routes: async () => [
+        routes: () => [
           '/',
           '/resume',
           '/blog',

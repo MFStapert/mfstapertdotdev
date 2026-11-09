@@ -1,7 +1,7 @@
 @import './variables.scss';
 
 html {
-  font-size: 62.5%; 
+  font-size: 62.5%;
 }
 
 body {
@@ -22,15 +22,15 @@ em {
 }
 
 strong {
-    font-weight: 900;
+  font-weight: 900;
 }
 
 a {
-  color: $color-dark-grey;   
-  text-decoration: none;         
-  transition: color .25s ease;
+  color: $color-dark-grey;
+  text-decoration: none;
+  transition: color 0.25s ease;
   &:hover {
-    color: $color-primary;  
+    color: $color-primary;
     text-decoration: underline;
   }
 }
@@ -68,5 +68,5 @@ h3 {
 }
 
 .color-primary {
-    color: $color-primary;
+  color: $color-primary;
 }

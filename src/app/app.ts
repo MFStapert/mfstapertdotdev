@@ -36,7 +36,9 @@ import { filter, skip } from 'rxjs';
         <h2><span class="color-primary">Want to get in touch? </span>Find me here:</h2>
         <div class="social-icons">
           <a href="https://github.com/MFStapert"><i class="fa fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/marijn-stapert-05091182/"><i class="fa fa-linkedin"></i></a>
+          <a href="https://www.linkedin.com/in/marijn-stapert-05091182/"
+            ><i class="fa fa-linkedin"></i
+          ></a>
           <a href="https://twitter.com/MarijnStapert"><i class="fa fa-twitter"></i></a>
         </div>
       </div>

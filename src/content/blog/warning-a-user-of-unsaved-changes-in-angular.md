@@ -1,14 +1,16 @@
 ---
-title: "mfstapert.[angular] warning a user of unsaved changes, in a form"
+title: 'mfstapert.[angular] warning a user of unsaved changes, in a form'
 slug: warning-a-user-of-unsaved-changes-in-angular
-published: "2021-12-29"
-displayTitle: "[angular] Warning a user of unsaved changes, in a form"
+published: '2021-12-29'
+displayTitle: '[angular] Warning a user of unsaved changes, in a form'
 ---
+
 Recently I had to implement a warning in our app when users leave or refresh a page when they still have unsaved changes to a form.
 While seemingly simple, there is some nuance I thought was worth explaining.
 Also some of the solutions I encountered didn't cover all my use cases, so I hope this can serve as a reference for developers in a similar situation.
 
 The use cases I wanted to solve were as follows:
+
 - This behavior should be easy to implement across multiple forms
 - This behavior should work for both empty forms and pre-filled forms (like an edit page)
 - This behavior should work with multiple formcontrols on a single page
@@ -24,14 +26,12 @@ It does this through a simple interface:
 
 ```typescript
 interface FormStates {
-	initialState: unknown;
-	currentState: unknown;
+  initialState: unknown;
+  currentState: unknown;
 }
 
 class HasFormChangedService {
-
-	private formStates: Record<string, FormStates> = {};
-
+  private formStates: Record<string, FormStates> = {};
 }
 ```
 
@@ -81,38 +81,35 @@ This directive is the key to easily implement this behavior across multiple form
 
 ```typescript
 @Directive({
-	selector: '[hasFormChanged]',
+  selector: '[hasFormChanged]',
 })
 export class HasFormChangedDirective implements OnInit, OnDestroy {
-	@Input() public hasFormChanged!: AbstractControl;
-	private formId = this.hasFormChangedService.registerNewForm();
-	private subscription?: Subscription;
+  @Input() public hasFormChanged!: AbstractControl;
+  private formId = this.hasFormChangedService.registerNewForm();
+  private subscription?: Subscription;
 
-	constructor(private hasFormChangedService: HasFormChangedService) {}
+  constructor(private hasFormChangedService: HasFormChangedService) {}
 
-	public ngOnInit(): void {
-		this.hasFormChangedService.setFormState(
-			this.formId,
-			this.hasFormChanged.value
-		);
+  public ngOnInit(): void {
+    this.hasFormChangedService.setFormState(this.formId, this.hasFormChanged.value);
 
-		this.subscription = this.hasFormChanged.valueChanges
-			.pipe(debounceTime(250))
-			.subscribe((value) => {
-					if (this.hasFormChanged.dirty) {
-						this.hasFormChangedService.setCurrentFormState(this.formId, value);
-					return;
-				}
-				// If we get valueChanges while the form is not dirty it usually means we are programmatically setting
-				// the control, so we need to reset its state in order to check for changes from the user
-				this.hasFormChangedService.setFormState(this.formId, value);
-			});
-	}
+    this.subscription = this.hasFormChanged.valueChanges
+      .pipe(debounceTime(250))
+      .subscribe((value) => {
+        if (this.hasFormChanged.dirty) {
+          this.hasFormChangedService.setCurrentFormState(this.formId, value);
+          return;
+        }
+        // If we get valueChanges while the form is not dirty it usually means we are programmatically setting
+        // the control, so we need to reset its state in order to check for changes from the user
+        this.hasFormChangedService.setFormState(this.formId, value);
+      });
+  }
 
-	public ngOnDestroy() {
-		this.hasFormChangedService.removeForm(this.formId);
-		this.subscription?.unsubscribe();
-	}
+  public ngOnDestroy() {
+    this.hasFormChangedService.removeForm(this.formId);
+    this.subscription?.unsubscribe();
+  }
 }
 ```
 
@@ -150,14 +147,13 @@ We can however display custom messages in a confirmational, so we use one from o
 
 ```typescript
 export class HasFormChangedGuard implements CanDeactivate<unknown> {
+  constructor(private formChangesService: HasFormChangedService) {}
 
-	constructor(private formChangesService: HasFormChangedService) {}
-
-	public canDeactivate(): boolean {
-		return this.formChangesService.haveFormsBeenChanged()
-			? confirm(environment.hasFormChangedMessage)
-			: true;
-	}
+  public canDeactivate(): boolean {
+    return this.formChangesService.haveFormsBeenChanged()
+      ? confirm(environment.hasFormChangedMessage)
+      : true;
+  }
 }
 ```
 
@@ -167,13 +163,12 @@ We have a seperate directive for buttons that explicitly cancel a form, which sh
 
 ```typescript
 export class CancelFormDirective {
+  constructor(private hasFormChangedService: HasFormChangedService) {}
 
-	constructor(private hasFormChangedService: HasFormChangedService) {}
-
-	@HostListener('click', ['$event'])
-	public onClick(): void {
-		this.hasFormChangedService.clearForms();
-	}
+  @HostListener('click', ['$event'])
+  public onClick(): void {
+    this.hasFormChangedService.clearForms();
+  }
 }
 ```
 

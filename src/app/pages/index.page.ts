@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
 import { RouteMeta } from '@analogjs/router';
+import { Component } from '@angular/core';
 
 import { mfstapertTitle } from '../title';
 

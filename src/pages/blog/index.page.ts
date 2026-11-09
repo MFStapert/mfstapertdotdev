@@ -22,9 +22,11 @@ export const routeMeta: RouteMeta = {
           class="inline-block border-l pl-medium hover:text-dark-grey"
           [routerLink]="['/blog', slug(post)]"
         >
-          <h1>{{ post.attributes.displayTitle }}</h1>
+          <h2 class="mb-small text-h1">{{ post.attributes.displayTitle }}</h2>
         </a>
-        <h3 class="pl-medium text-primary">Published: {{ label(post.attributes.published) }}</h3>
+        <p class="pl-medium text-h3 text-primary">
+          Published: {{ label(post.attributes.published) }}
+        </p>
       </div>
     }
   `,

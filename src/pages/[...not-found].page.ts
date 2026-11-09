@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 import { mfstapertTitle } from '../lib/title';
 
 export const routeMeta: RouteMeta = {
-  title: mfstapertTitle(),
+  title: mfstapertTitle('page not found'),
 };
 
 @Component({

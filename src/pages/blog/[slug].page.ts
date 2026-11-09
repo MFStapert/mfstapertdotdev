@@ -28,7 +28,9 @@ export const routeMeta: RouteMeta = {
     @if (post(); as post) {
       <article class="inline-block">
         <h1>{{ post.attributes.displayTitle }}</h1>
-        <h3 class="mb-large text-primary">Published: {{ label(post.attributes.published) }}</h3>
+        <p class="mb-large text-h3 text-primary">
+          Published: {{ label(post.attributes.published) }}
+        </p>
         <analog-markdown class="prose prose-site" [content]="post.content" />
       </article>
     }

@@ -8,7 +8,7 @@ displayTitle: '[angular] Minimal ESLint and prettier setup'
 Recently I had the assignment to set up prettier and ESLint for new projects at my company.
 Most projects we do involve 2 webapps in a mono repo and 2-3 front-end developers working at a time.
 In this article I'll summarize my findings to save you, the reader, some time setting this up.
-A repo with this setup can be found [here](https://github.com/MFStapert/prettier-ESLint-angular-config).
+A repo with this setup can be found at [prettier-ESLint-angular-config on GitHub](https://github.com/MFStapert/prettier-ESLint-angular-config).
 
 ## .editorconfig
 

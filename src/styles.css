@@ -7,7 +7,7 @@
 @theme {
   --font-sans: 'Source Sans Pro', arial, sans-serif;
 
-  --color-primary: #0094c6;
+  --color-primary: #007ca6;
   --color-light-grey: #fbfbfb;
   --color-dark-grey: #565554;
 
@@ -62,17 +62,9 @@
     text-shadow: none;
   }
 
-  :focus {
-    outline: 0;
-  }
-
-  a:focus {
-    outline: thin dotted;
-  }
-
-  a:active,
-  a:hover {
-    outline: 0;
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
   }
 
   h1,
@@ -194,11 +186,6 @@
 
   & a {
     font-weight: inherit;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 
   & strong {

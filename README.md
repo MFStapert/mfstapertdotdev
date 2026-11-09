@@ -32,6 +32,6 @@ npm run preview
 
 ## Deploy
 
-Pushes to `main` run [`.github/workflows/ci.yml`](.github/workflows/ci.yml). The `checks` job installs dependencies, runs the tests and the build, and uploads `dist/analog/public` as the Pages artifact. The `deploy` job publishes that artifact. Pull requests run `checks` only.
+Pushes to `main` run [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). It calls [`.github/workflows/ci.yml`](.github/workflows/ci.yml), which installs dependencies, runs the tests and the build, and uploads `dist/analog/public` as the Pages artifact. The `deploy` job publishes that artifact. Pull requests run the `checks` job in `ci.yml` only.
 
 `public/CNAME` (`mfstapert.dev`) is copied into that artifact so the custom domain stays attached. Posts are `/blog/<slug>`. The old dated Jekyll URLs are not redirected.

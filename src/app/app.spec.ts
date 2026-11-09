@@ -1,6 +1,6 @@
+import { provideLocationMocks } from '@angular/common/testing';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
-import { provideLocationMocks } from '@angular/common/testing';
 
 import { App } from './app';
 
@@ -21,7 +21,7 @@ describe('App', () => {
   it('renders the wordmark and primary nav', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
-    const text = fixture.nativeElement.textContent as string;
+    const text = (fixture.nativeElement as HTMLElement).textContent;
 
     expect(text).toContain('mfstapert');
     expect(text).toContain('Home');

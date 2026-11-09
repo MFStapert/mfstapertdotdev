@@ -1,11 +1,10 @@
 name: Deploy site
 
-# Runs only on pushes to master. Until Pages is set to GitHub Actions, the
-# deploy job fails and publishes nothing. That is expected during cutover.
+# Pushes to main build the static site and deploy it to GitHub Pages.
 on:
   push:
     branches:
-      - master
+      - main
 
 permissions:
   contents: read

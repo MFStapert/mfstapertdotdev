@@ -1,6 +1,6 @@
 import { injectContentFiles } from '@analogjs/content';
 import { RouteMeta } from '@analogjs/router';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import PostAttributes from '../../post-attributes';
@@ -13,7 +13,6 @@ export const routeMeta: RouteMeta = {
 
 @Component({
   selector: 'blog',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink],
   template: `
     <h1><span class="color-primary">#</span>Blog</h1>

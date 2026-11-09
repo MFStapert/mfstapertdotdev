@@ -1,12 +1,11 @@
 import { isPlatformBrowser } from '@angular/common';
-import { ChangeDetectionStrategy, Component, PLATFORM_ID, inject } from '@angular/core';
+import { Component, PLATFORM_ID, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { filter, skip } from 'rxjs';
 
 @Component({
   selector: 'root',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink, RouterOutlet],
   // Keep the spaces between inline nav items and footer icons, matching the Jekyll HTML.
   preserveWhitespaces: true,

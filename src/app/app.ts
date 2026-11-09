@@ -1,12 +1,12 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, PLATFORM_ID, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { filter, skip } from 'rxjs';
 
 @Component({
   selector: 'root',
-  imports: [RouterLink, RouterOutlet],
+  imports: [RouterLink, RouterOutlet, RouterLinkActive],
   preserveWhitespaces: true,
   template: `
     <!-- Not sr-only: Font Awesome's unlayered .sr-only would override focus:not-sr-only. -->
@@ -28,7 +28,13 @@ import { filter, skip } from 'rxjs';
           <ul class="mt-8.5">
             @for (link of navLinks; track link.path) {
               <li class="inline-block">
-                <a class="px-large text-lg/[30px]" [routerLink]="link.path">{{ link.label }}</a>
+                <a
+                  class="px-large text-lg/[30px]"
+                  [routerLink]="link.path"
+                  routerLinkActive="text-primary"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  >{{ link.label }}</a
+                >
               </li>
             }
           </ul>

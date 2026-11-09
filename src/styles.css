@@ -204,10 +204,11 @@
   }
 
   & :not(pre) > code {
+    border: 1px solid var(--color-dark-grey);
     display: inline-block;
     padding: var(--spacing-micro);
-    background-color: var(--color-dark-grey);
-    color: white;
+    background-color: white;
+    color: var(--color-dark-grey);
     font-size: 1rem;
   }
 

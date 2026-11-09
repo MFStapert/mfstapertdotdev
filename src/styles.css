@@ -7,7 +7,6 @@
 @theme {
   --font-sans: 'Source Sans Pro', arial, sans-serif;
 
-  /* Passes WCAG AA (4.5:1) on both light-grey and white. */
   --color-primary: #007ca6;
   --color-light-grey: #fbfbfb;
   --color-dark-grey: #565554;
@@ -63,7 +62,6 @@
     text-shadow: none;
   }
 
-  /* Keyboard focus only, so mouse clicks don't leave an outline behind. */
   :focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
@@ -186,7 +184,6 @@
     padding: 0;
   }
 
-  /* The typography plugin underlines links, so they don't rely on color alone. */
   & a {
     font-weight: inherit;
   }

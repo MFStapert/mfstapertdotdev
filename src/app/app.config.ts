@@ -12,7 +12,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([requestContextInterceptor])),
     provideClientHydration(withEventReplay()),
     provideContent(withMarkdownRenderer()),
-    // No <base href> in index.html, so `#main` links resolve against the current page.
     { provide: APP_BASE_HREF, useValue: '/' },
   ],
 };

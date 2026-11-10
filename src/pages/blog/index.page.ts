@@ -23,7 +23,9 @@ export const routeMeta: RouteMeta = {
           <h2 class="mb-small text-h1">{{ post.attributes.displayTitle }}</h2>
         </a>
         <div class="flex flex-wrap items-center gap-medium">
-          <p class="text-h3 text-primary">Published: {{ label(post.attributes.published) }}</p>
+          <time class="text-h3 text-primary" [attr.datetime]="label(post.attributes.published)">{{
+            label(post.attributes.published)
+          }}</time>
           <post-tags [tags]="post.attributes.tags" />
         </div>
       </div>

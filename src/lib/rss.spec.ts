@@ -1,4 +1,5 @@
-import { buildRss, feedSummary, type FeedPost } from './rss';
+import { postSummary } from './post-path';
+import { buildRss, type FeedPost } from './rss';
 
 const post = (published: string, displayTitle: string, body: string, slug?: string): FeedPost => ({
   attributes: { title: '', slug: slug ?? '', published, displayTitle, tags: [] },
@@ -6,9 +7,9 @@ const post = (published: string, displayTitle: string, body: string, slug?: stri
   body,
 });
 
-describe('feedSummary', () => {
+describe('postSummary', () => {
   it('returns the first paragraph as plain text', () => {
-    expect(feedSummary('# Heading\n\nSee [the `docs`](https://x.dev)\nfor more.\n\nSecond.')).toBe(
+    expect(postSummary('# Heading\n\nSee [the `docs`](https://x.dev)\nfor more.\n\nSecond.')).toBe(
       'See the docs for more.',
     );
   });

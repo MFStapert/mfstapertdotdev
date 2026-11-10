@@ -2,7 +2,7 @@ import { injectContent, injectContentFiles, MarkdownComponent } from '@analogjs/
 import { RouteMeta } from '@analogjs/router';
 import { Component } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterLink } from '@angular/router';
 
 import { PostTags } from '../../app/post-tags';
 import PostAttributes from '../../lib/post-attributes';
@@ -24,15 +24,29 @@ export const routeMeta: RouteMeta = {
 
 @Component({
   selector: 'blog-post',
-  imports: [MarkdownComponent, PostTags],
+  imports: [MarkdownComponent, PostTags, RouterLink],
   template: `
     @if (post(); as post) {
-      <article class="inline-block">
-        <h1>{{ post.attributes.displayTitle }}</h1>
-        <div class="mb-large flex flex-wrap items-center gap-medium">
-          <time class="text-h3 text-primary" [attr.datetime]="label(post.attributes.published)">{{
-            label(post.attributes.published)
-          }}</time>
+      <div
+        class="reading-progress fixed inset-x-0 top-0 z-50 h-1 bg-linear-to-r from-primary to-[#3f5bd8] print:hidden"
+        aria-hidden="true"
+      ></div>
+      <article class="mx-auto w-full max-w-[70ch]">
+        <a class="font-mono text-sm text-muted hover:text-primary" routerLink="/blog"
+          >← all posts</a
+        >
+        <h1
+          class="mt-medium mb-large text-[clamp(2rem,5vw,3rem)] leading-tight font-black tracking-tight"
+        >
+          {{ post.attributes.displayTitle }}
+        </h1>
+        <div class="mb-12 flex flex-wrap items-center gap-medium border-b pb-large">
+          <p class="meta">
+            <time [attr.datetime]="label(post.attributes.published)">{{
+              label(post.attributes.published)
+            }}</time>
+            · {{ minutes(post.content) }} min read
+          </p>
           <post-tags [tags]="post.attributes.tags" />
         </div>
         <analog-markdown class="prose prose-site" [content]="post.content" />
@@ -50,5 +64,11 @@ export default class BlogPostPage {
 
   label(value: unknown): string {
     return publishedLabel(value);
+  }
+
+  minutes(content: unknown): number {
+    return typeof content === 'string'
+      ? Math.max(1, Math.round(content.split(/\s+/).length / 225))
+      : 1;
   }
 }

@@ -4,7 +4,7 @@
     "standard": "WCAG2AA",
     "chromeLaunchConfig": {
       "channel": "chrome",
-      "args": ["--no-sandbox"]
+      "args": ["--no-sandbox", "--force-prefers-reduced-motion"]
     },
     "timeout": 60000
   }

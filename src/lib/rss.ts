@@ -1,7 +1,7 @@
 import { Marked } from 'marked';
 
 import type PostAttributes from './post-attributes';
-import { contentSlug, sitemapLastmod } from './post-path';
+import { contentSlug, postSummary, sitemapLastmod } from './post-path';
 
 export const SITE_URL = 'https://mfstapert.dev';
 
@@ -29,20 +29,6 @@ function cdata(value: string): string {
   return `<![CDATA[${value.replaceAll(']]>', ']]]]><![CDATA[>')}]]>`;
 }
 
-/** First paragraph of the post as plain text. */
-export function feedSummary(markdown: string): string {
-  const paragraph = markdown
-    .trim()
-    .split(/\n{2,}/)
-    .find((block) => !/^(#|```|\s*[-*] )/.test(block));
-
-  return (paragraph ?? '')
-    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
-    .replaceAll('`', '')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
 function rfc822(date: string): string {
   return new Date(`${date}T00:00:00Z`).toUTCString();
 }
@@ -60,7 +46,7 @@ export function buildRss(posts: FeedPost[]): string {
       <link>${link}</link>
       <guid isPermaLink="true">${link}</guid>
       <pubDate>${rfc822(post.date)}</pubDate>
-      <description>${escapeXml(feedSummary(post.body))}</description>
+      <description>${escapeXml(postSummary(post.body))}</description>
       <content:encoded>${cdata(markdown.parse(post.body, { async: false }))}</content:encoded>
     </item>`;
   });

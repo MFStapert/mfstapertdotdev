@@ -7,6 +7,14 @@
     <link rel="alternate" type="application/rss+xml" title="mfstapert." href="/rss.xml" />
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
     <link rel="stylesheet" href="/src/styles.css" />
+    <script>
+      try {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark' || (!theme && matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch {}
+    </script>
     <script
       data-goatcounter="https://mfstapert.goatcounter.com/count"
       async

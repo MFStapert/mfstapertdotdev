@@ -27,9 +27,8 @@ export const routeMeta: RouteMeta = {
     <p class="mb-large w-full md:w-[65%] print:w-full">
       Software engineer with ten years of experience building web applications, mostly in Angular
       and TypeScript, with a background in full-stack development in Java and Kotlin. I enjoy
-      improving how teams work: test strategy, CI/CD pipelines and container-based infrastructure,
-      backed by a Certified Kubernetes Application Developer certification. Currently a senior
-      frontend developer at XIP, working for Thieme Meulenhoff.
+      improving how teams work: architecture, test strategy, CI/CD pipelines and infrastructure.
+      Currently a senior frontend developer at XIP, working for Thieme Meulenhoff.
     </p>
 
     <section class="mb-large grid w-full grid-cols-[50%] gap-y-medium narrow:inline">

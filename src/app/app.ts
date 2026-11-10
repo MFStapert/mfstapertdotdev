@@ -16,9 +16,9 @@ import { filter, skip } from 'rxjs';
       >Skip to content</a
     >
 
-    <header>
+    <header class="print:hidden">
       <div class="page-container">
-        <p class="mb-small flex-[1_1_50%] py-large text-h1 print:pt-0">
+        <p class="mb-small flex-[1_1_50%] py-large text-h1">
           <a class="group hover:text-dark-grey hover:no-underline" routerLink="/"
             >{{ '{' }} <span class="text-primary group-hover:underline">mfstapert</span>;
             {{ '}' }}</a

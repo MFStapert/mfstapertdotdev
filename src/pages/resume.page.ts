@@ -11,12 +11,25 @@ export const routeMeta: RouteMeta = {
 @Component({
   selector: 'resume',
   template: `
-    <h1 class="sr-only">Resume</h1>
-
-    <p class="mb-large w-full print:hidden">
-      <a class="inline-block rounded border px-medium py-small" href="/resume.pdf" download
+    <div class="mb-medium flex w-full flex-wrap items-start justify-between gap-medium">
+      <div>
+        <h1>Marijn Stapert</h1>
+        <p class="text-h3 text-primary">Senior frontend developer · Deventer</p>
+      </div>
+      <a
+        class="inline-block rounded border px-medium py-small print:hidden"
+        href="/resume.pdf"
+        download
         ><i class="fa-solid fa-download" aria-hidden="true"></i> Download PDF</a
       >
+    </div>
+
+    <p class="mb-large w-full md:w-[65%] print:w-full">
+      Software engineer with ten years of experience building web applications, mostly in Angular
+      and TypeScript, with a background in full-stack development in Java and Kotlin. I enjoy
+      improving how teams work: test strategy, CI/CD pipelines and container-based infrastructure,
+      backed by a Certified Kubernetes Application Developer certification. Currently a senior
+      frontend developer at XIP, working for Thieme Meulenhoff.
     </p>
 
     <section class="mb-large grid w-full grid-cols-[50%] gap-y-medium narrow:inline">
@@ -30,7 +43,7 @@ export const routeMeta: RouteMeta = {
         <div class="col-start-2 border-l pl-medium">
           <h2 class="my-small text-h3 underline">{{ block.heading }}:</h2>
           @for (row of block.rows; track row.label) {
-            <p>
+            <p [class]="row.printOnly ? 'hidden print:block' : null">
               {{ row.label }}: <span class="text-primary">{{ row.value }}</span>
             </p>
           }
@@ -87,6 +100,8 @@ export default class ResumePage {
       rows: [
         { label: 'Date of birth', value: '18-09-1991' },
         { label: 'Residence', value: 'Deventer' },
+        { label: 'Languages', value: 'Dutch, English' },
+        { label: 'Email', value: 'mf.stapert@gmail.com', printOnly: true },
       ],
     },
     {

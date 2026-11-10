@@ -24,9 +24,9 @@ describe('App', () => {
     const text = (fixture.nativeElement as HTMLElement).textContent;
 
     expect(text).toContain('mfstapert');
-    expect(text).toContain('Home');
-    expect(text).toContain('Resume');
-    expect(text).toContain('Blog');
+    expect(text).toContain('home');
+    expect(text).toContain('resume');
+    expect(text).toContain('blog');
     expect(text).toContain('Want to get in touch?');
   });
 });

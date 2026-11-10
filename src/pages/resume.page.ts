@@ -11,84 +11,111 @@ export const routeMeta: RouteMeta = {
 @Component({
   selector: 'resume',
   template: `
-    <div class="mb-medium flex w-full flex-wrap items-start justify-between gap-medium">
-      <div>
-        <h1>Marijn Stapert</h1>
-        <p class="text-h3 text-primary">Senior frontend developer · Deventer</p>
+    <header class="mb-12 flex w-full flex-wrap items-center gap-large">
+      <img
+        class="size-28 rounded-2xl object-cover shadow-lg ring-4 ring-surface print:size-24 print:shadow-none"
+        src="/assets/imgs/mugshot.jpg"
+        alt="Portrait of Marijn Stapert"
+      />
+      <div class="min-w-60 flex-1">
+        <h1 class="text-[clamp(2.25rem,5vw,3rem)] leading-tight font-black tracking-tight">
+          Marijn Stapert
+        </h1>
+        <p class="font-mono text-primary">Senior frontend developer · Deventer</p>
       </div>
       <a
-        class="inline-block rounded border px-medium py-small print:hidden"
+        class="group inline-flex items-center gap-small rounded-full border border-ink/30 px-6 py-3 font-semibold transition hover:border-primary print:hidden"
         href="/resume.pdf"
         download
-        ><i class="fa-solid fa-download" aria-hidden="true"></i> Download PDF</a
+        ><i
+          class="fa-solid fa-download transition-transform group-hover:translate-y-0.5"
+          aria-hidden="true"
+        ></i>
+        Download PDF</a
       >
-    </div>
+    </header>
 
-    <p class="mb-large w-full md:w-[65%] print:w-full">
+    <p class="mb-12 max-w-[65ch] text-lg print:max-w-none">
       Software engineer with ten years of experience building web applications, mostly in Angular
       and TypeScript, with a background in full-stack development in Java and Kotlin. I enjoy
       improving how teams work: architecture, test strategy, CI/CD pipelines and infrastructure.
       Currently a senior frontend developer at XIP, working for Thieme Meulenhoff.
     </p>
 
-    <section class="mb-large grid w-full grid-cols-[50%] gap-y-medium narrow:inline">
-      <img
-        class="col-start-1 row-span-2 box-content size-50 self-center rounded border narrow:hidden"
-        src="/assets/imgs/mugshot.jpg"
-        alt="Portrait of Marijn Stapert"
-      />
-
+    <section class="mb-16 grid w-full gap-medium sm:grid-cols-2">
       @for (block of personalia; track block.heading) {
-        <div class="col-start-2 border-l pl-medium">
-          <h2 class="my-small text-h3 underline">{{ block.heading }}:</h2>
-          @for (row of block.rows; track row.label) {
-            <p [class]="row.printOnly ? 'hidden print:block' : null">
-              {{ row.label }}: <span class="text-primary">{{ row.value }}</span>
-            </p>
-          }
+        <div class="rounded-2xl border bg-surface p-large print:break-inside-avoid">
+          <h2 class="meta mb-medium tracking-widest uppercase">{{ block.heading }}</h2>
+          <dl class="grid grid-cols-[auto_1fr] gap-x-medium gap-y-1">
+            @for (row of block.rows; track row.label) {
+              <dt class="text-muted" [class]="row.printOnly ? 'hidden print:block' : null">
+                {{ row.label }}
+              </dt>
+              <dd
+                class="font-semibold text-ink-strong"
+                [class]="row.printOnly ? 'hidden print:block' : null"
+              >
+                {{ row.value }}
+              </dd>
+            }
+          </dl>
         </div>
       }
     </section>
 
     <section class="w-full">
-      <h2 class="mb-large text-h1">Work experience:</h2>
+      <h2 class="mb-large text-h1"><span class="font-mono text-primary">#</span>Work experience</h2>
 
-      @for (job of jobs; track job.order) {
-        <div class="mb-large border-l pl-medium">
-          <div class="mb-medium print:break-inside-avoid print:break-after-avoid">
-            <h3 class="text-h2 text-primary">
-              {{ job.attributes.title }}
-              @if (job.attributes.languages) {
-                <em> ({{ job.attributes.languages }})</em>
-              }
-            </h3>
-            {{ job.attributes.period }}:
-            <span class="text-primary">{{ job.attributes.employer }}</span>
-          </div>
+      <ol class="list-none border-l-2 pl-large">
+        @for (job of jobs; track job.order) {
+          <li
+            class="relative mb-12 before:absolute before:top-1.5 before:-left-[calc(2rem+7px)] before:size-3 before:rounded-full before:bg-primary before:ring-4 before:ring-page last:mb-0"
+          >
+            <div class="mb-medium print:break-inside-avoid print:break-after-avoid">
+              <p class="meta">{{ job.attributes.period }}</p>
+              <h3 class="text-h2">
+                {{ job.attributes.title }}
+                @if (job.attributes.languages) {
+                  <em class="text-muted">({{ job.attributes.languages }})</em>
+                }
+              </h3>
+              <p class="font-semibold text-primary">{{ job.attributes.employer }}</p>
+            </div>
 
-          <article
-            class="mb-medium inline-block space-y-medium md:w-[65%] print:w-full"
-            [innerHTML]="job.body"
-          ></article>
+            <div
+              class="mb-medium max-w-[65ch] space-y-medium print:max-w-none"
+              [innerHTML]="job.body"
+            ></div>
 
-          @if (job.attributes.activities) {
-            <p class="text-primary print:break-after-avoid">Key activities:</p>
-            <ul class="pt-small pb-medium leading-[1.4]">
-              @for (activity of job.attributes.activities; track activity) {
-                <li>{{ activity }}</li>
-              }
-            </ul>
-          }
-          @if (job.attributes.technology) {
-            <p class="text-primary print:break-after-avoid">Technology:</p>
-            <ul class="columns-3 gap-x-5 pt-small pb-medium leading-[1.4] print:break-inside-avoid">
-              @for (technology of job.attributes.technology; track technology) {
-                <li>{{ technology }}</li>
-              }
-            </ul>
-          }
-        </div>
-      }
+            @if (job.attributes.activities) {
+              <p class="meta mb-small tracking-widest uppercase print:break-after-avoid">
+                Key activities
+              </p>
+              <ul class="mb-medium list-none space-y-1 print:break-inside-avoid">
+                @for (activity of job.attributes.activities; track activity) {
+                  <li
+                    class="flex gap-small before:font-mono before:text-primary before:content-['▹']"
+                  >
+                    {{ activity }}
+                  </li>
+                }
+              </ul>
+            }
+            @if (job.attributes.technology) {
+              <p class="meta mb-small tracking-widest uppercase print:break-after-avoid">
+                Technology
+              </p>
+              <ul class="flex list-none flex-wrap gap-small print:break-inside-avoid">
+                @for (technology of job.attributes.technology; track technology) {
+                  <li class="rounded-md border bg-surface px-small py-0.5 font-mono text-xs">
+                    {{ technology }}
+                  </li>
+                }
+              </ul>
+            }
+          </li>
+        }
+      </ol>
     </section>
   `,
 })

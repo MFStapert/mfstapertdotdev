@@ -1,11 +1,8 @@
-import { injectContentFiles } from '@analogjs/content';
 import { RouteMeta } from '@analogjs/router';
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
-import { PostTags } from '../../app/post-tags';
-import PostAttributes from '../../lib/post-attributes';
-import { contentSlug, publishedLabel } from '../../lib/post-path';
+import { PostCard } from '../../app/post-card';
+import { loadPosts } from '../../lib/posts';
 import { mfstapertTitle } from '../../lib/title';
 
 export const routeMeta: RouteMeta = {
@@ -14,36 +11,27 @@ export const routeMeta: RouteMeta = {
 
 @Component({
   selector: 'blog',
-  imports: [PostTags, RouterLink],
+  imports: [PostCard],
   template: `
-    <h1><span class="text-primary">#</span>Blog</h1>
-    @for (post of posts; track post.slug) {
-      <div class="mt-large w-full border-l pl-medium">
-        <a class="inline-block hover:text-dark-grey" [routerLink]="['/blog', slug(post)]">
-          <h2 class="mb-small text-h1">{{ post.attributes.displayTitle }}</h2>
-        </a>
-        <div class="flex flex-wrap items-center gap-medium">
-          <time class="text-h3 text-primary" [attr.datetime]="label(post.attributes.published)">{{
-            label(post.attributes.published)
-          }}</time>
-          <post-tags [tags]="post.attributes.tags" />
-        </div>
-      </div>
-    }
+    <header class="mb-12 w-full">
+      <h1 class="mb-small"><span class="font-mono text-primary">#</span>Blog</h1>
+      <p class="max-w-[60ch] text-lg text-muted">
+        Notes on Angular, Node and the tooling around them. Also available as an
+        <a
+          class="font-semibold text-primary underline-offset-4 hover:underline"
+          href="feed:https://mfstapert.dev/rss.xml"
+          >RSS feed</a
+        >.
+      </p>
+    </header>
+    <h2 class="sr-only">All posts</h2>
+    <div class="grid w-full gap-medium md:grid-cols-2">
+      @for (post of posts; track post.slug) {
+        <post-card [post]="post" />
+      }
+    </div>
   `,
 })
 export default class BlogPage {
-  readonly posts = injectContentFiles<PostAttributes>((file) =>
-    file.filename.includes('/content/blog/'),
-  ).sort((a, b) =>
-    publishedLabel(b.attributes.published).localeCompare(publishedLabel(a.attributes.published)),
-  );
-
-  slug(post: { attributes: PostAttributes; slug: string }): string {
-    return contentSlug(post.attributes.slug, post.slug);
-  }
-
-  label(value: unknown): string {
-    return publishedLabel(value);
-  }
+  readonly posts = loadPosts();
 }

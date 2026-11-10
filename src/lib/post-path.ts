@@ -26,3 +26,17 @@ export function sitemapLastmod(value: unknown): string {
 
   return label;
 }
+
+/** First paragraph of the post as plain text. */
+export function postSummary(markdown: string): string {
+  const paragraph = markdown
+    .trim()
+    .split(/\n{2,}/)
+    .find((block) => !/^(#|```|\s*[-*] )/.test(block));
+
+  return (paragraph ?? '')
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replaceAll('`', '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}

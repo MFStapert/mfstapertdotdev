@@ -1,6 +1,8 @@
 @import '@fontsource/source-sans-pro/400.css';
 @import '@fontsource/source-sans-pro/600.css';
 @import '@fontsource/source-sans-pro/900.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/600.css';
 @import 'tailwindcss';
 @import '@fortawesome/fontawesome-free/css/fontawesome.min.css' layer(components);
 @import '@fortawesome/fontawesome-free/css/brands.min.css' layer(components);
@@ -8,12 +10,22 @@
 
 @plugin '@tailwindcss/typography';
 
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant narrow (@media (max-width: 600px));
+
 @theme {
-  --font-sans: 'Source Sans Pro', arial, sans-serif;
+  --font-sans: 'Source Sans Pro', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   --color-primary: #007ca6;
-  --color-light-grey: #fbfbfb;
-  --color-dark-grey: #565554;
+  --color-on-primary: #ffffff;
+  --color-page: #fbfbfb;
+  --color-surface: #ffffff;
+  --color-ink: #565554;
+  --color-ink-strong: #2e2d2c;
+  --color-muted: #6b6966;
+  --color-line: #e3e1de;
+  --color-terminal: #1b1d21;
 
   --spacing-micro: 0.25rem;
   --spacing-small: 0.5rem;
@@ -21,69 +33,99 @@
   --spacing-large: 2rem;
 
   --text-h1: 2.4em;
-  --text-h1--line-height: 1;
+  --text-h1--line-height: 1.1;
   --text-h2: 1.375rem;
-  --text-h2--line-height: 1.4;
+  --text-h2--line-height: 1.3;
   --text-h3: 1.25rem;
-  --text-h3--line-height: 1.2;
+  --text-h3--line-height: 1.3;
 }
 
-@utility page-container {
-  @apply mx-auto flex w-9/10 max-w-350 flex-wrap;
+/* Print always uses the light palette, so the resume PDF never comes out dark. */
+@media screen {
+  .dark {
+    --color-primary: #5ab8de;
+    --color-on-primary: #0f0e0d;
+    --color-page: #151413;
+    --color-surface: #1e1d1b;
+    --color-ink: #d6d3cf;
+    --color-ink-strong: #f4f2ef;
+    --color-muted: #a19d98;
+    --color-line: #34322f;
+  }
 }
-
-@custom-variant narrow (@media (max-width: 600px));
 
 @page {
   size: A4;
   margin: 15mm;
 }
 
-/*
- * Element defaults on top of Preflight. These also style HTML the templates do not
- * write themselves, like resume entries.
- */
+@media print {
+  html,
+  body {
+    background: white;
+  }
+}
+
+@utility page-container {
+  @apply mx-auto w-full max-w-5xl px-medium md:px-large;
+}
+
 @layer base {
   html {
     tab-size: 8;
+    color-scheme: light;
+    background: var(--color-page);
+
+    &.dark {
+      color-scheme: dark;
+    }
   }
 
-  /* Every border on the site is dark grey. Preflight defaults to currentColor. */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   *,
   ::after,
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-dark-grey);
+    border-color: var(--color-line);
   }
 
   body {
     font-family: var(--font-sans);
-    color: var(--color-dark-grey);
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1;
-    overflow: scroll;
+    background: var(--color-page);
+    color: var(--color-ink);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    overflow-y: scroll;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
 
   ::selection {
-    background: #b3d4fc;
-    text-shadow: none;
+    background: color-mix(in oklab, var(--color-primary) 25%, transparent);
   }
 
   :focus-visible {
     outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
+    outline-offset: 3px;
+    border-radius: 0.25rem;
   }
 
   h1,
   h2,
   h3 {
+    color: var(--color-ink-strong);
     font-weight: 600;
+    text-wrap: balance;
   }
 
   h1 {
-    margin-bottom: var(--spacing-small);
     font-size: var(--text-h1);
     line-height: var(--text-h1--line-height);
   }
@@ -96,11 +138,6 @@
   h3 {
     font-size: var(--text-h3);
     line-height: var(--text-h3--line-height);
-  }
-
-  p {
-    font-size: 1rem;
-    line-height: 1.2;
   }
 
   ul {
@@ -117,17 +154,15 @@
   }
 
   a {
-    color: var(--color-dark-grey);
+    color: inherit;
     text-decoration: none;
-    transition: color 0.25s ease;
+    transition: color 0.2s ease;
 
     &:hover {
       color: var(--color-primary);
-      text-decoration: underline;
     }
   }
 
-  /* The routed page is a component host. Its children are the flex items of the page container. */
   router-outlet {
     display: none;
   }
@@ -137,74 +172,68 @@
   }
 }
 
+/* Dates, tags, labels: the monospace accent. */
+@utility meta {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: -0.01em;
+  color: var(--color-muted);
+}
+
 /* Blog post bodies: the typography plugin, tuned to the site's look. Use as `prose prose-site`. */
 @utility prose-site {
-  /* `.prose` sets these too and comes later, so match it with higher specificity. */
   &.prose {
-    --tw-prose-body: var(--color-dark-grey);
-    --tw-prose-headings: var(--color-dark-grey);
+    --tw-prose-body: var(--color-ink);
+    --tw-prose-headings: var(--color-ink-strong);
     --tw-prose-links: var(--color-primary);
-    --tw-prose-bold: var(--color-dark-grey);
-    --tw-prose-bullets: var(--color-dark-grey);
+    --tw-prose-bold: var(--color-ink-strong);
+    --tw-prose-bullets: var(--color-primary);
+    --tw-prose-counters: var(--color-muted);
+    --tw-prose-quotes: var(--color-ink-strong);
+    --tw-prose-quote-borders: var(--color-primary);
+    --tw-prose-hr: var(--color-line);
 
-    max-width: none;
-    font-size: 1rem;
-    line-height: 1;
-  }
-
-  & h1,
-  & h2,
-  & h3 {
-    font-weight: 600;
-  }
-
-  & h1 {
-    margin: 0 0 var(--spacing-small);
-    font-size: var(--text-h1);
-    line-height: var(--text-h1--line-height);
+    max-width: 70ch;
+    font-size: 1.125rem;
+    line-height: 1.75;
   }
 
   & h2 {
-    margin: var(--spacing-large) 0 var(--spacing-medium);
-    color: var(--color-primary);
-    font-size: var(--text-h2);
-    line-height: var(--text-h2--line-height);
-  }
+    margin-top: 2.5em;
+    font-weight: 600;
+    scroll-margin-top: 6rem;
 
-  & h3 {
-    margin: 0 0 var(--spacing-large);
-    font-size: var(--text-h3);
-    line-height: var(--text-h3--line-height);
-  }
-
-  & p,
-  & ul {
-    width: 75%;
-    margin: 0 0 var(--spacing-medium);
-    font-size: 1.25rem;
+    &::before {
+      content: '# ';
+      color: var(--color-primary);
+      font-family: var(--font-mono);
+      font-weight: 400;
+    }
   }
 
   & ul {
-    padding: 0;
-  }
-
-  & li {
-    margin: 0;
-    padding: 0;
+    list-style-position: outside;
   }
 
   & a {
-    font-weight: inherit;
-  }
-
-  & strong {
-    font-weight: 900;
-  }
-
-  & code {
-    font-family: inherit;
     font-weight: 600;
-    border-radius: 0.1875rem;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+
+    &:hover {
+      text-decoration-thickness: 2px;
+    }
+  }
+
+  & :not(pre) > code {
+    padding: 0.1em 0.35em;
+    border: 1px solid var(--color-line);
+    border-radius: 0.375rem;
+    background: var(--color-surface);
+    color: var(--color-ink-strong);
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    font-weight: 400;
 
     &::before,
     &::after {
@@ -212,31 +241,142 @@
     }
   }
 
-  & :not(pre) > code {
-    border: 1px solid var(--color-dark-grey);
-    display: inline-block;
-    padding: var(--spacing-micro);
-    background-color: white;
-    color: var(--color-dark-grey);
-    font-size: 1rem;
-  }
-
-  /* Shiki sets the background and text colors inline. */
+  /* Shiki sets light and dark colors inline. */
   & pre {
-    overflow-x: visible;
-    margin: 0 0 var(--spacing-medium);
-    padding: var(--spacing-medium);
-    border-radius: 0.1875rem;
-    font-family: inherit;
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1;
+    overflow-x: auto;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--color-line);
+    border-radius: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    line-height: 1.7;
   }
 
   & pre code {
-    display: block;
-    font-size: 0.875rem;
-    line-height: 1.45;
-    white-space: pre;
+    font-family: inherit;
+    font-weight: 400;
+  }
+}
+
+.dark .shiki,
+.dark .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+}
+
+.dark .shiki span {
+  background-color: transparent !important;
+}
+
+/* Home page terminal: each line types itself out, then the next starts. */
+@utility type-line {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+  width: calc(var(--chars) * 1ch);
+  animation: typing calc(var(--chars) * 55ms) steps(var(--chars)) var(--at) both;
+}
+
+@utility reveal {
+  animation: reveal 0.35s ease-out var(--at) both;
+}
+
+@utility cursor-blink {
+  animation: blink 1s steps(1) infinite;
+}
+
+@utility reading-progress {
+  transform-origin: left;
+  animation: grow linear both;
+  animation-timeline: scroll(root);
+}
+
+@utility glitch {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    clip-path: inset(0 0 100% 0);
+  }
+
+  &::before {
+    color: var(--color-primary);
+    animation: glitch 2.4s infinite steps(1);
+  }
+
+  &::after {
+    color: #e5484d;
+    animation: glitch 2.4s infinite steps(1) reverse;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes glitch {
+  0%,
+  80%,
+  100% {
+    clip-path: inset(0 0 100% 0);
+    transform: none;
+  }
+  82% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translate(-4px, 1px);
+  }
+  86% {
+    clip-path: inset(55% 0 20% 0);
+    transform: translate(4px, -1px);
+  }
+  90% {
+    clip-path: inset(30% 0 40% 0);
+    transform: translate(-2px, 2px);
+  }
+}
+
+@supports not (animation-timeline: scroll()) {
+  .reading-progress {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .type-line,
+  .reveal,
+  .cursor-blink,
+  .reading-progress,
+  .glitch::before,
+  .glitch::after {
+    animation: none;
+  }
+
+  .reading-progress {
+    display: none;
   }
 }

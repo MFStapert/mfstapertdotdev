@@ -3,6 +3,7 @@ import { RouteMeta } from '@analogjs/router';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { PostTags } from '../../app/post-tags';
 import PostAttributes from '../../lib/post-attributes';
 import { contentSlug, publishedLabel } from '../../lib/post-path';
 import { mfstapertTitle } from '../../lib/title';
@@ -13,7 +14,7 @@ export const routeMeta: RouteMeta = {
 
 @Component({
   selector: 'blog',
-  imports: [RouterLink],
+  imports: [PostTags, RouterLink],
   template: `
     <h1><span class="text-primary">#</span>Blog</h1>
     @for (post of posts; track post.slug) {
@@ -24,6 +25,7 @@ export const routeMeta: RouteMeta = {
         >
           <h2 class="mb-small text-h1">{{ post.attributes.displayTitle }}</h2>
         </a>
+        <post-tags class="mb-small pl-medium" [tags]="post.attributes.tags" />
         <p class="pl-medium text-h3 text-primary">
           Published: {{ label(post.attributes.published) }}
         </p>

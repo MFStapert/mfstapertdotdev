@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRouteSnapshot } from '@angular/router';
 
+import { PostTags } from '../../app/post-tags';
 import PostAttributes from '../../lib/post-attributes';
 import { contentSlug, publishedLabel } from '../../lib/post-path';
 import { mfstapertTitle } from '../../lib/title';
@@ -23,16 +24,12 @@ export const routeMeta: RouteMeta = {
 
 @Component({
   selector: 'blog-post',
-  imports: [MarkdownComponent],
+  imports: [MarkdownComponent, PostTags],
   template: `
     @if (post(); as post) {
       <article class="inline-block">
         <h1>{{ post.attributes.displayTitle }}</h1>
-        <ul class="mb-small flex list-none flex-wrap gap-small" aria-label="Tags">
-          @for (tag of post.attributes.tags; track tag) {
-            <li class="rounded-full border bg-white px-small py-micro text-sm">{{ tag }}</li>
-          }
-        </ul>
+        <post-tags class="mb-small" [tags]="post.attributes.tags" />
         <p class="mb-large text-h3 text-primary">
           Published: {{ label(post.attributes.published) }}
         </p>

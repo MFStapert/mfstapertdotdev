@@ -18,17 +18,14 @@ export const routeMeta: RouteMeta = {
   template: `
     <h1><span class="text-primary">#</span>Blog</h1>
     @for (post of posts; track post.slug) {
-      <div class="mt-large w-full">
-        <a
-          class="inline-block border-l pl-medium hover:text-dark-grey"
-          [routerLink]="['/blog', slug(post)]"
-        >
+      <div class="mt-large w-full border-l pl-medium">
+        <a class="inline-block hover:text-dark-grey" [routerLink]="['/blog', slug(post)]">
           <h2 class="mb-small text-h1">{{ post.attributes.displayTitle }}</h2>
         </a>
-        <post-tags class="mb-small pl-medium" [tags]="post.attributes.tags" />
-        <p class="pl-medium text-h3 text-primary">
-          Published: {{ label(post.attributes.published) }}
-        </p>
+        <div class="flex flex-wrap items-center gap-medium">
+          <p class="text-h3 text-primary">Published: {{ label(post.attributes.published) }}</p>
+          <post-tags [tags]="post.attributes.tags" />
+        </div>
       </div>
     }
   `,

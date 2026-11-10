@@ -3,4 +3,5 @@ export default interface PostAttributes {
   slug: string;
   published: string;
   displayTitle: string;
+  tags: string[];
 }

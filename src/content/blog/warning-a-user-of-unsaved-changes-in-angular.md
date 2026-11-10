@@ -1,8 +1,10 @@
 ---
-title: 'mfstapert.[angular] warning a user of unsaved changes, in a form'
+title: 'mfstapert.warning a user of unsaved changes, in a form'
 slug: warning-a-user-of-unsaved-changes-in-angular
 published: '2021-12-29'
-displayTitle: '[angular] Warning a user of unsaved changes, in a form'
+displayTitle: 'Warning a user of unsaved changes, in a form'
+tags:
+  - angular
 ---
 
 Recently I had to implement a warning in our app when users leave or refresh a page when they still have unsaved changes to a form.

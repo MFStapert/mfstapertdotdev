@@ -9,7 +9,7 @@ import { filter, skip } from 'rxjs';
   imports: [RouterLink, RouterOutlet, RouterLinkActive],
   preserveWhitespaces: true,
   template: `
-    <!-- Not sr-only: Font Awesome's unlayered .sr-only would override focus:not-sr-only. -->
+    <!-- Not sr-only: Font Awesome's .sr-only sets clip, which focus:not-sr-only doesn't reset. -->
     <a
       class="absolute top-medium left-medium -translate-y-[200%] bg-white px-medium py-small focus:translate-y-0"
       href="#main"
@@ -55,12 +55,14 @@ import { filter, skip } from 'rxjs';
         </h2>
         <div class="py-medium text-[1.875rem]/none *:pr-large">
           <a href="https://github.com/MFStapert" aria-label="GitHub"
-            ><i class="fa fa-github" aria-hidden="true"></i
+            ><i class="fa-brands fa-github" aria-hidden="true"></i
           ></a>
           <a href="https://www.linkedin.com/in/marijn-stapert-05091182/" aria-label="LinkedIn"
-            ><i class="fa fa-linkedin" aria-hidden="true"></i
+            ><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i
           ></a>
-          <a href="/rss.xml" aria-label="RSS feed"><i class="fa fa-rss" aria-hidden="true"></i></a>
+          <a href="/rss.xml" aria-label="RSS feed"
+            ><i class="fa-solid fa-rss" aria-hidden="true"></i
+          ></a>
         </div>
       </div>
     </footer>

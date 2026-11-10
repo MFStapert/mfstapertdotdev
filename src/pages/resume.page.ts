@@ -15,7 +15,7 @@ export const routeMeta: RouteMeta = {
 
     <p class="mb-large w-full print:hidden">
       <a class="inline-block rounded border px-medium py-small" href="/resume.pdf" download
-        ><i class="fa fa-download" aria-hidden="true"></i> Download PDF</a
+        ><i class="fa-solid fa-download" aria-hidden="true"></i> Download PDF</a
       >
     </p>
 

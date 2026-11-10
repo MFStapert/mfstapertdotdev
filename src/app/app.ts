@@ -60,7 +60,10 @@ import { filter, skip } from 'rxjs';
           <a href="https://www.linkedin.com/in/marijn-stapert-05091182/" aria-label="LinkedIn"
             ><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i
           ></a>
-          <a href="/rss.xml" aria-label="RSS feed"
+          <a
+            href="feed:https://mfstapert.dev/rss.xml"
+            type="application/rss+xml"
+            aria-label="RSS feed"
             ><i class="fa-solid fa-rss" aria-hidden="true"></i
           ></a>
         </div>

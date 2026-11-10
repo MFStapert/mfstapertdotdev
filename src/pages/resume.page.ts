@@ -11,7 +11,25 @@ export const routeMeta: RouteMeta = {
 @Component({
   selector: 'resume',
   template: `
-    <h1 class="sr-only">Resume</h1>
+    <div class="mb-medium flex w-full flex-wrap items-start justify-between gap-medium">
+      <div>
+        <h1>Marijn Stapert</h1>
+        <p class="text-h3 text-primary">Senior frontend developer · Deventer</p>
+      </div>
+      <a
+        class="inline-block rounded border px-medium py-small print:hidden"
+        href="/resume.pdf"
+        download
+        ><i class="fa-solid fa-download" aria-hidden="true"></i> Download PDF</a
+      >
+    </div>
+
+    <p class="mb-large w-full md:w-[65%] print:w-full">
+      Software engineer with ten years of experience building web applications, mostly in Angular
+      and TypeScript, with a background in full-stack development in Java and Kotlin. I enjoy
+      improving how teams work: architecture, test strategy, CI/CD pipelines and infrastructure.
+      Currently a senior frontend developer at XIP, working for Thieme Meulenhoff.
+    </p>
 
     <section class="mb-large grid w-full grid-cols-[50%] gap-y-medium narrow:inline">
       <img
@@ -24,7 +42,7 @@ export const routeMeta: RouteMeta = {
         <div class="col-start-2 border-l pl-medium">
           <h2 class="my-small text-h3 underline">{{ block.heading }}:</h2>
           @for (row of block.rows; track row.label) {
-            <p>
+            <p [class]="row.printOnly ? 'hidden print:block' : null">
               {{ row.label }}: <span class="text-primary">{{ row.value }}</span>
             </p>
           }
@@ -37,7 +55,7 @@ export const routeMeta: RouteMeta = {
 
       @for (job of jobs; track job.order) {
         <div class="mb-large border-l pl-medium">
-          <div class="mb-medium">
+          <div class="mb-medium print:break-inside-avoid print:break-after-avoid">
             <h3 class="text-h2 text-primary">
               {{ job.attributes.title }}
               @if (job.attributes.languages) {
@@ -49,12 +67,12 @@ export const routeMeta: RouteMeta = {
           </div>
 
           <article
-            class="mb-medium inline-block space-y-medium md:w-[65%]"
+            class="mb-medium inline-block space-y-medium md:w-[65%] print:w-full"
             [innerHTML]="job.body"
           ></article>
 
           @if (job.attributes.activities) {
-            <p class="text-primary">Key activities:</p>
+            <p class="text-primary print:break-after-avoid">Key activities:</p>
             <ul class="pt-small pb-medium leading-[1.4]">
               @for (activity of job.attributes.activities; track activity) {
                 <li>{{ activity }}</li>
@@ -62,8 +80,8 @@ export const routeMeta: RouteMeta = {
             </ul>
           }
           @if (job.attributes.technology) {
-            <p class="text-primary">Technology:</p>
-            <ul class="columns-3 gap-x-5 pt-small pb-medium leading-[1.4]">
+            <p class="text-primary print:break-after-avoid">Technology:</p>
+            <ul class="columns-3 gap-x-5 pt-small pb-medium leading-[1.4] print:break-inside-avoid">
               @for (technology of job.attributes.technology; track technology) {
                 <li>{{ technology }}</li>
               }
@@ -81,6 +99,8 @@ export default class ResumePage {
       rows: [
         { label: 'Date of birth', value: '18-09-1991' },
         { label: 'Residence', value: 'Deventer' },
+        { label: 'Languages', value: 'Dutch, English' },
+        { label: 'Email', value: 'mf.stapert@gmail.com', printOnly: true },
       ],
     },
     {

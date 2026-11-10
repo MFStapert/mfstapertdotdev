@@ -29,10 +29,12 @@ export const routeMeta: RouteMeta = {
     @if (post(); as post) {
       <article class="inline-block">
         <h1>{{ post.attributes.displayTitle }}</h1>
-        <post-tags class="mb-small" [tags]="post.attributes.tags" />
-        <p class="mb-large text-h3 text-primary">
-          Published: {{ label(post.attributes.published) }}
-        </p>
+        <div class="mb-large flex flex-wrap items-center gap-medium">
+          <time class="text-h3 text-primary" [attr.datetime]="label(post.attributes.published)">{{
+            label(post.attributes.published)
+          }}</time>
+          <post-tags [tags]="post.attributes.tags" />
+        </div>
         <analog-markdown class="prose prose-site" [content]="post.content" />
       </article>
     }
